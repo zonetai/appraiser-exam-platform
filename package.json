@@ -1,0 +1,17 @@
+{
+  "name": "appraiser-exam-platform",
+  "version": "0.1.0",
+  "description": "不動產估價師考試學習平台：歷年考題、參考答案、法規、政策動態、猜題、模擬考",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "init": "node scripts/init-db.js",
+    "reset": "node scripts/init-db.js --reset",
+    "build": "node scripts/export-static.js",
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "fetch:moex": "node scripts/fetch-moex.js",
+    "predict": "node scripts/predict.js"
+  }
+}

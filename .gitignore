@@ -1,0 +1,9 @@
+node_modules/
+db/exam.sqlite
+db/exam.sqlite-wal
+db/exam.sqlite-shm
+data/moex/*/*.pdf
+*.zip
+.claude/
+Thumbs.db
+.DS_Store

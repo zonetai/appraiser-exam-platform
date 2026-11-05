@@ -1,0 +1,38 @@
+[
+  { "subject": "theory", "topic": "租金估價", "title": "第十八號公報「不動產租金估價指引」首度入題", "rationale": "2025-10-21 通過、2026-04 刊載，為首部專門租金估價公報；技術規則第八章租金估價自 103 年後久未單獨出題。可能問：三種租金估價方法之適用、市場租金與契約租金之區別、押金與權利金之處理。", "weight": 3, "basis": "policy", "target_year": 116, "sources": ["全聯會法令專區"] },
+  { "subject": "theory", "topic": "成本法與折舊", "title": "新版第四號公報與成本法參數", "rationale": "2024-12 新版第四號公報調高營造施工費 8–20% 並新增綠建築、低碳、充電設備等加價項目。考點：重建成本 vs 重置成本、加價項目對成本法之影響、折舊三類型。", "weight": 2.5, "basis": "policy", "target_year": 116, "sources": ["全聯會新聞稿 2024-12-11"] },
+  { "subject": "theory", "topic": "大量估價與自動估價模型", "title": "AVM／AI 估價與估價師角色", "rationale": "銀行導入 AVM 房貸秒估、全聯會呼籲估價獨立性、美國 2024 年 AVM 規則；命題大綱列有「大量估價」。適合問 AVM 與個案估價差異、限制與倫理。", "weight": 2, "basis": "instructor", "target_year": 116, "sources": ["iThome", "全聯會"] },
+  { "subject": "theory", "topic": "國際估價準則與公允價值", "title": "投資性不動產公允價值與 IVS 2024", "rationale": "113 年已考投資性不動產；取得或處分資產處理準則 2025 修正、第七／八號公報。可能再問 IFRS 13 公允價值層級、最高最佳使用、兩家估價差異處理。", "weight": 1.5, "basis": "cycle", "target_year": 116, "sources": [] },
+  { "subject": "theory", "topic": "比較法", "title": "比較法三調整與試算價格決定", "rationale": "114 年考近鄰／類似地區與區域因素調整，115 年後可能轉向情況調整、價格日期調整或試算價格決定（技術規則第 25–27 條，調整率上限 15%／30%）。", "weight": 1.5, "basis": "frequency", "target_year": 116, "sources": [] },
+
+  { "subject": "practice", "topic": "權利變換價值分配", "title": "都更權利變換估價流程、估價條件與爭議（延續 114 年）", "rationale": "114 年考完整權變估價流程與爭議；都更條例第 65 條 2024 修正、容積獎勵辦法 2025 修正。可能改以計算題形式考更新前後價值分配與共同負擔。", "weight": 2.5, "basis": "policy", "target_year": 116, "sources": ["全國法規資料庫 D0070008"] },
+  { "subject": "practice", "topic": "土地開發分析法計算", "title": "土地開發分析法計算（含第十五號公報參數揭露）", "rationale": "112、113 年連續考計算、114 年考參數差異原因；第十五號公報運用指引 2023 年通過。幾乎每年必考。", "weight": 3, "basis": "frequency", "target_year": 116, "sources": [] },
+  { "subject": "practice", "topic": "擔保品與法拍估價", "title": "金融機構擔保品估價（第十四號公報 2026 修訂）", "rationale": "第十四號公報 2026-05-14 修正，新增消金估價與摘要式報告書範本；公股行庫委外估價議題熱。可能問擔保品估價原則、摘要式與敘述式報告書差異。", "weight": 2.5, "basis": "policy", "target_year": 116, "sources": ["旺得富 2026-05-19"] },
+  { "subject": "practice", "topic": "地上權與租金估價計算", "title": "租金估價計算（第十八號公報）", "rationale": "113 年實務考收益法含租金案例比較；第十八號公報通過後，實務科可能直接考積算法／租賃實例比較法計算。", "weight": 2, "basis": "policy", "target_year": 116, "sources": [] },
+  { "subject": "practice", "topic": "特殊不動產估價實務", "title": "原住民保留地估價（第十七號公報）", "rationale": "2025-12-26 通過之新公報，規範交易限制折減與租金評估；新公報通常在通過後 1–2 年內入題。", "weight": 1.5, "basis": "policy", "target_year": 116, "sources": [] },
+  { "subject": "practice", "topic": "估價報告書撰寫與程序", "title": "報告書應記載事項與挑錯題型", "rationale": "107、108 年考報告書挑錯，112 年考調整表挑錯，113 年問收益法報告書應載事項。技術規則第 15–17 條為實務科常備考點。", "weight": 2, "basis": "frequency", "target_year": 116, "sources": [] },
+
+  { "subject": "economics", "topic": "不動產金融與貨幣政策", "title": "選擇性信用管制退場路徑之經濟分析", "rationale": "2024-09 第七波收緊 → 2026-03／09 兩次放寬第 2 戶成數；114 年已考利率與房價。可能問總體審慎工具之傳導、退場條件、對供需之影響（繪圖）。", "weight": 3, "basis": "policy", "target_year": 116, "sources": ["央行新聞稿"] },
+  { "subject": "economics", "topic": "住宅市場與住宅政策", "title": "新青安 3.0 與租金補貼擴大之住宅市場效果", "rationale": "青安 3.0 2026-08 上路（所得與總價門檻）、租金補貼核定逾 90 萬戶、社宅 12 萬戶。112 年已考租金補貼繪圖題，政策工具效果為常考主題。", "weight": 2.5, "basis": "policy", "target_year": 116, "sources": [] },
+  { "subject": "economics", "topic": "不動產稅制之經濟效果", "title": "房屋稅差別稅率 2.0（囤房稅）之轉嫁與資本化", "rationale": "2024-07 施行、2025-05 首次開徵；持有稅對空屋、租金轉嫁、房價資本化之分析可繪圖作答，為典型政策經濟題。", "weight": 2.5, "basis": "policy", "target_year": 116, "sources": [] },
+  { "subject": "economics", "topic": "外部性與公共財", "title": "碳費、ESG 與外部性內部化", "rationale": "113 年考寇斯定理與碳交易；碳費 2026-05 首次繳費。可能延伸問碳費對營建成本與房價、綠建築溢酬之外部性分析。", "weight": 2, "basis": "policy", "target_year": 116, "sources": [] },
+  { "subject": "economics", "topic": "地租與地價理論", "title": "地租理論與稟賦效果等行為經濟觀點", "rationale": "114 年首度出現行為經濟學（稟賦效果、損失厭惡）；112 年考土地與資本要素替代。命題者近年偏好理論結合徵收／開發情境。", "weight": 1.5, "basis": "frequency", "target_year": 116, "sources": [] },
+
+  { "subject": "investment", "topic": "投資決策準則", "title": "NPV 與 IRR 比較、互斥方案與共同生命週期法", "rationale": "114 年連考兩題（IRR 獨斷性、重製鏈法），113 年考 NPV 與折現還本期間。每年至少一題計算，建議熟練 MIRR、PI 與不等年期比較。", "weight": 3, "basis": "frequency", "target_year": 116, "sources": [] },
+  { "subject": "investment", "topic": "財務槓桿與融資", "title": "貸款攤還方式、剩餘本金與違約因素", "rationale": "112–114 年連續考 CPM／CAM 攤還、利率因子與房貸違約；青安 3.0 與央行管制提供新情境（寬限期、成數）。", "weight": 3, "basis": "frequency", "target_year": 116, "sources": [] },
+  { "subject": "investment", "topic": "不動產證券化與投資組合", "title": "REITs 風險衡量與投資組合（變異係數、相關係數、CAPM）", "rationale": "114 年考權益型與抵押型 REITs 之 CV 與相關係數；可延伸至 β、效率前緣與多角化效果。", "weight": 2, "basis": "frequency", "target_year": 116, "sources": [] },
+  { "subject": "investment", "topic": "總體環境與市場週期", "title": "ESG／綠色金融與不動產投資（延續 113 年）", "rationale": "113 年兩題論述 ESG 與綠色金融；碳費上路、綠建築加價納入第四號公報，命題者持續關注永續議題。", "weight": 1.5, "basis": "policy", "target_year": 116, "sources": [] },
+
+  { "subject": "law_civil", "topic": "規定地價與土地稅", "title": "土地增值稅免徵／不課徵／不計徵與原地價認定", "rationale": "112、113、114 年連續三年出題（農地、公設保留地、免徵與不課徵比較），為本科最穩定考點；房地合一與自用住宅優惠稅率亦可能入題。", "weight": 3, "basis": "frequency", "target_year": 116, "sources": [] },
+  { "subject": "law_civil", "topic": "不動產估價師法", "title": "估價師法 2024 修正：估價助理員登錄制度與開業要件", "rationale": "第 18-1、18-2 條 2025-02-07 施行、施行細則 2025-11 修正估價經驗證明；釋字 809 已於 112 年考過，助理員制度為最新未考修法。", "weight": 3, "basis": "policy", "target_year": 116, "sources": ["全國法規資料庫 D0060076"] },
+  { "subject": "law_civil", "topic": "共有", "title": "共有物分割與抵押權移存（第 824 條之 1）、土地法第 34 條之 1", "rationale": "113 年考分割時抵押權移存與金錢補償之法定抵押權；共有為物權編最常考章節，可能轉考多數決處分與優先購買權。", "weight": 2.5, "basis": "frequency", "target_year": 116, "sources": [] },
+  { "subject": "law_civil", "topic": "地上權與區分地上權", "title": "地上權讓與、地租、終止與區分地上權競合", "rationale": "112 年考區分地上權與普通地上權競合（第 841 條之 5），114 年考地上權讓與、分割限制與地租催告（第 836、838 條）。連續出題顯示命題者偏好用益物權實例題。", "weight": 2.5, "basis": "frequency", "target_year": 116, "sources": [] },
+  { "subject": "law_civil", "topic": "不動產經紀業與交易安全", "title": "平均地權條例 112 年修正之交易管制（預售屋換約、私法人購屋）", "rationale": "112 年已考，但子法與執行案例持續累積，且屬六考科共通時事；可能改從私法人許可或檢舉獎金角度出題。", "weight": 1.5, "basis": "cycle", "target_year": 116, "sources": [] },
+
+  { "subject": "law_land", "topic": "土地徵收與區段徵收", "title": "徵收補償（市價查估程序、區段徵收補償、公設保留地毗鄰）", "rationale": "考生心得稱「徵收每年一題」：112 先行區段徵收、113 毗鄰界定、114 區段徵收補償。可備：協議價購程序、市價查估辦法七步驟、抵價地、殘餘地一併徵收。", "weight": 3, "basis": "frequency", "target_year": 116, "sources": [] },
+  { "subject": "law_land", "topic": "國土計畫法", "title": "國土計畫法延至 2031 年全面實施與過渡期管制", "rationale": "第 45 條 2025-01 修正延期六年；112、113、114 年連續出現國土計畫法題（使用許可、同意使用項目、國土保育費）。延期理由與過渡期雙軌管制為新考點。", "weight": 3, "basis": "policy", "target_year": 116, "sources": ["全國法規資料庫 D0070230"] },
+  { "subject": "law_land", "topic": "都市更新條例", "title": "都更容積獎勵（第 65 條 2024 修正）與危老條例修正草案", "rationale": "114 年已考獎勵項目與上限；原建築容積認定放寬、危老申請期限 2027-05-31 與修正草案（刪除期限、捐贈社宅獎勵）為時事申論題材。", "weight": 2.5, "basis": "policy", "target_year": 116, "sources": [] },
+  { "subject": "law_land", "topic": "市地重劃與農地重劃", "title": "市地重劃分配效果與重劃負擔（第十一號公報）", "rationale": "114 年民法科考平均地權條例第 62 條重劃分配效果；心得指出市地重劃為冷門失分區。可問重劃負擔項目、抵費地、自辦重劃程序。", "weight": 2, "basis": "cycle", "target_year": 116, "sources": [] },
+  { "subject": "law_land", "topic": "容積移轉制度", "title": "容積移轉計算、上限與折繳代金程序", "rationale": "114 年剛考；但容積代金估價為估價師重要業務，歷年約每 2–3 年一題，可備送出基地類型與公設保留地容積移轉之價值計算。", "weight": 1.5, "basis": "cycle", "target_year": 116, "sources": [] },
+  { "subject": "law_land", "topic": "住宅法與社會住宅", "title": "住宅法三軌補貼與社宅租金訂定", "rationale": "社宅 12.67 萬戶、包租代管 11.6 萬戶、租金補貼 91.9 萬戶（2026-08 統計）；估價師查估社宅租金涉及第十八號公報。住宅法多年未考，週期已到。", "weight": 2, "basis": "cycle", "target_year": 116, "sources": [] }
+]

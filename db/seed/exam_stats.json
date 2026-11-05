@@ -1,0 +1,17 @@
+[
+  { "year": 101, "pass_rate": 12.89, "note": "公職王彙整考選部統計（人數未核對）" },
+  { "year": 102, "pass_rate": 7.91, "note": "公職王彙整考選部統計（人數未核對）" },
+  { "year": 103, "pass_rate": 2.73, "note": "歷年次低；公職王彙整" },
+  { "year": 104, "applicants": 598, "attendees": 326, "passed": 50, "pass_rate": 15.34, "note": "考選部統計 PDF（file_id 284）；比率交叉自政大年鑑" },
+  { "year": 105, "applicants": 603, "attendees": 338, "passed": 26, "pass_rate": 7.69, "note": "考選部統計 PDF（file_id 219）" },
+  { "year": 106, "applicants": 587, "attendees": 341, "passed": 29, "pass_rate": 8.50, "note": "考選部統計 PDF（file_id 133）" },
+  { "year": 107, "applicants": 586, "attendees": 350, "passed": 31, "pass_rate": 8.86, "note": "考選部統計 PDF（file_id 27）；到考數自政大年鑑" },
+  { "year": 108, "applicants": 529, "attendees": 297, "passed": 23, "pass_rate": 7.74, "note": "考選部統計 PDF（file_id 1837）；部分自政大年鑑" },
+  { "year": 109, "applicants": 511, "attendees": 309, "passed": 14, "pass_rate": 4.53, "note": "考選部統計 PDF（file_id 1935）" },
+  { "year": 110, "applicants": 534, "attendees": 287, "passed": 22, "pass_rate": 7.67, "note": "考選部統計 PDF（file_id 2022）" },
+  { "year": 111, "applicants": 524, "attendees": 302, "passed": 20, "pass_rate": 6.62, "note": "考選部統計 PDF（file_id 2134）" },
+  { "year": 112, "applicants": 551, "attendees": 334, "passed": 20, "pass_rate": 5.99, "note": "考選部統計 PDF（file_id 2234）" },
+  { "year": 113, "applicants": 512, "attendees": 299, "passed": 72, "pass_rate": 24.08, "note": "歷年最高；考選部統計 PDF（file_id 3342）" },
+  { "year": 114, "applicants": 569, "attendees": 343, "passed": 38, "pass_rate": 11.08, "note": "考選部統計 PDF（file_id 3450）" },
+  { "year": 115, "applicants": 570, "attendees": 362, "passed": 53, "pass_rate": 14.64, "note": "考選部統計 PDF（file_id 3553）；報考平均年齡 39.36 歲" }
+]

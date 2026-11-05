@@ -1,0 +1,9 @@
+[
+  { "code": "chinese", "name": "國文（作文）", "exam_type": "申論", "duration_min": 120, "sort_order": 0, "description": "普通科目，占總成績 10%。第 1 節考試。本站不收錄題庫，僅提醒配分與不得零分。" },
+  { "code": "law_civil", "name": "民法物權與不動產法規", "exam_type": "申論", "duration_min": 120, "sort_order": 1, "description": "民法物權編（所有權、共有、地上權、不動產役權、抵押權、占有）、不動產估價師法、不動產經紀業管理條例、公寓大廈管理條例、平均地權條例交易管制、土地稅法等。考選部試題代號 90520。" },
+  { "code": "law_land", "name": "土地利用法規", "exam_type": "申論", "duration_min": 120, "sort_order": 2, "description": "分「計畫法規」（國土計畫、區域計畫、都市計畫）與「開發利用法規」（土地徵收、市地重劃、區段徵收、都市更新、危老、容積移轉、非都市土地使用管制）。徵收幾乎每年一題。試題代號 90530。" },
+  { "code": "investment", "name": "不動產投資分析", "exam_type": "申論", "duration_min": 120, "sort_order": 3, "description": "六大財務公式、NPV／IRR、現金流量、槓桿、CAPM 與投資組合、證券化、市場分析；每年約 2 題計算，近年論述題增加（ESG、綠色金融）。試題代號 90540。" },
+  { "code": "practice", "name": "不動產估價實務", "exam_type": "申論", "duration_min": 240, "sort_order": 4, "description": "唯一 4 小時、可使用電子計算器的科目。三大方法與土地開發分析法計算、權利變換分配、報告書格式與挑錯、徵收估價；題型年年變化。試題代號 90550。" },
+  { "code": "economics", "name": "不動產經濟學", "exam_type": "申論", "duration_min": 120, "sort_order": 5, "description": "競租與地租理論、區位與都市空間結構、住宅市場與政策、景氣循環與泡沫、土地使用管制與稅制之經濟分析；務必畫圖並解釋每條線。試題代號 90560。" },
+  { "code": "theory", "name": "不動產估價理論", "exam_type": "申論", "duration_min": 120, "sort_order": 6, "description": "禁止使用電子計算器。以不動產估價技術規則 140 條為核心：價格種類、價格形成原理、估價原則、三大方法與土地開發分析法、宗地／房地／權利估價。範圍最小、CP 值最高。試題代號 90570。" }
+]
