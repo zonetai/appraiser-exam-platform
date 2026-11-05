@@ -9,6 +9,7 @@
     "init": "node scripts/init-db.js",
     "reset": "node scripts/init-db.js --reset",
     "build": "node scripts/export-static.js",
+    "deploy": "git subtree push --prefix public origin gh-pages",
     "start": "node server.js",
     "dev": "node --watch server.js",
     "fetch:moex": "node scripts/fetch-moex.js",

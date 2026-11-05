@@ -21,7 +21,14 @@ npm start         # http://localhost:3000
 部署只要把 `public/` 放到任何靜態主機：
 - **Netlify Drop**（最簡單）：登入 https://app.netlify.com/drop ，把 `public` 資料夾或 `估價師考試學習平台_靜態網站.zip` 拖進去，幾秒後得到網址；可在 Site settings 改自訂網域。
 - **Cloudflare Pages**：Workers & Pages → Create → Upload assets，上傳 `public`。
-- **GitHub Pages**：把 `public` 內容放進 repo 根目錄（或 `docs/`），Settings → Pages 啟用。
+- **GitHub Pages（本專案採用）**：repo 為 https://github.com/zonetai/appraiser-exam-platform ，`gh-pages` 分支只放 `public` 的內容，Pages 從該分支根目錄發布。更新流程：
+
+  ```bash
+  npm run init && npm run build
+  git add -A && git commit -m "更新題庫"
+  git push origin main
+  npm run deploy        # = git subtree push --prefix public origin gh-pages
+  ```
 - 自有主機：任何 nginx／Apache／IIS 靜態目錄皆可，不需 Node。
 
 `server.js` 只是本機預覽用的靜態檔案伺服器（同時保留一套 `/api` 端點，網站介面已不使用）。
