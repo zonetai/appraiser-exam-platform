@@ -129,7 +129,7 @@
     const cov = {}; for (const q of bundle.questions) { const k = `${q.year}|${qSubject(q).code}`; cov[k] = (cov[k] || 0) + 1; }
     const scored = u.attempts.filter((a) => a.self_score != null);
     return {
-      questions: bundle.questions.length, answers: bundle.questions.reduce((a, q) => a + q.answers.length, 0) + u.answers.length, policies: bundle.policies.length,
+      questions: bundle.questions.length, rubrics: bundle.questions.filter((q) => q.rubric).length, links: bundle.questions.reduce((a, q) => a + q.answers.filter((x) => x.answer_type === 'link').length, 0), answers: bundle.questions.reduce((a, q) => a + q.answers.length, 0) + u.answers.length, policies: bundle.policies.length,
       laws: bundle.laws.length, articles: bundle.laws.reduce((a, l) => a + l.article_count, 0), topics: bundle.topics.length, resources: bundle.resources.length, schools: bundle.cram_schools.length,
       years, year_min: years[0] ?? null, year_max: years.at(-1) ?? null,
       by_subject: bundle.subjects.map((s) => { const qs = bundle.questions.filter((q) => q.subject_id === s.id); return { ...s, questions: qs.length, year_min: qs.length ? Math.min(...qs.map((q) => q.year)) : null, year_max: qs.length ? Math.max(...qs.map((q) => q.year)) : null, topics: bundle.topics.filter((t) => t.subject_id === s.id).length }; }),
@@ -215,7 +215,7 @@
   async function post(pathStr, body) {
     await load();
     const u = user();
-    if (pathStr === '/attempts') { u.attempts.push({ id: nextId(u), question_id: body.question_id, mode: body.mode || 'practice', started_at: now(), duration_sec: body.duration_sec ?? null, self_score: body.self_score ?? null, rubric: body.rubric || null, answer_text: body.answer_text || null, notes: body.notes || null }); saveUser(u); return { ok: true }; }
+    if (pathStr === '/attempts') { u.attempts.push({ id: nextId(u), question_id: body.question_id, mode: body.mode || 'practice', started_at: now(), duration_sec: body.duration_sec ?? null, self_score: body.self_score ?? null, graded_by: body.graded_by || 'self', auto_score: body.auto_score ?? null, ai_score: body.ai_score ?? null, rubric: body.rubric || null, answer_text: body.answer_text || null, notes: body.notes || null }); saveUser(u); return { ok: true }; }
     if (pathStr === '/bookmarks') { const on = !u.bookmarks[body.question_id]; if (on) u.bookmarks[body.question_id] = { created_at: now(), note: body.note || null }; else delete u.bookmarks[body.question_id]; saveUser(u); return { bookmarked: on }; }
     if (pathStr === '/notes') { u.notes.push({ id: nextId(u), ref_type: body.ref_type || 'question', ref_id: body.ref_id, content: body.content, created_at: now() }); saveUser(u); return { ok: true }; }
     if (pathStr === '/answers') { u.answers.push({ id: 'u' + nextId(u), question_id: body.question_id, source_name: body.source_name || '自撰', source_url: body.source_url || null, author: body.author || null, answer_type: body.answer_type || 'outline', content: body.content, license_note: body.license_note || null, created_at: now() }); saveUser(u); return { ok: true }; }

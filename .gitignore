@@ -7,3 +7,4 @@ data/moex/*/*.pdf
 .claude/
 Thumbs.db
 .DS_Store
+work/

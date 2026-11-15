@@ -101,3 +101,42 @@ node scripts/fetch-laws.js 不動產估價技術規則
 - 102 年以前試題需手動指定考試代碼或自考選部下載後補登。
 - 全聯會網站僅 http，公報 PDF 載有「未經同意不得重製」聲明，本站僅連結。
 - 學習紀錄為單機版（無帳號），存在 `db/exam.sqlite`。
+
+## 得分要點與自動批改
+
+每題的「得分要點」放在 `db/seed/rubrics/<科目代碼>.json`（theory、practice、economics、investment、law_civil、law_land），為本站依現行法規與通說撰寫的原創評分依據，格式見各檔與 `scripts/init-db.js`：
+
+- `points[]`：得分點（`title`、`weight` 合計 100、`keywords` 詞組，以 `|` 分隔同義寫法、`min_hits`）。
+- `laws[]`：應引用法條；`answers[]`：計算題參考數值（含容許誤差）；`outline`、`figure`、`summary`、`note`。
+- `sources[]`：該題的補習班解答原始連結。另可在 `db/seed/answer_sources.json` 以「年度＋科目」或「年度全科」批次掛連結。
+
+**自動批改（內建）** 在瀏覽器執行（`public/grader.js`），不需伺服器：
+
+| 項目 | 有應引法條 | 無應引法條 |
+|---|---|---|
+| 得分要點涵蓋（計算題含數值比對 45%） | 70% | 80% |
+| 法條引用（條號＋法規名稱） | 12% | — |
+| 架構（小標數 ≥ 子問數、結論句） | 10% | 12% |
+| 篇幅（每分約 24 字；計算題 12 字） | 8% | 8% |
+
+只列關鍵詞而無論述會折減。它檢查「有沒有寫到」，無法判斷論述對錯，請當檢核表使用。
+
+**AI 批改（選用）**：`supabase/functions/grade/index.ts` 是 Supabase Edge Function，收到題目、得分要點與作答後呼叫 Claude API 逐點給分並寫評語。
+
+```bash
+supabase functions deploy grade --no-verify-jwt --project-ref <專案代碼>
+supabase secrets set ANTHROPIC_API_KEY=<金鑰> --project-ref <專案代碼>
+```
+
+部署後把函式網址（`https://<專案代碼>.supabase.co/functions/v1/grade`）填進 `public/config.js` 的 `aiEndpoint` 再重新部署網站，題目頁就會出現「AI 批改」按鈕。注意事項：
+
+- 金鑰只存在 Supabase secrets，不進前端。預設模型 `claude-opus-5-5`（可用 `GRADER_MODEL` 覆寫），每次批改約輸入 3–5 千、輸出 2–4 千 token。
+- 這是公開端點，任何人都能觸發而產生費用。函式內建每 IP 每小時 12 次的限流（`HOURLY_LIMIT_PER_IP`）與來源網域限制（`ALLOWED_ORIGINS`），但請務必在 Anthropic Console 設定每月用量上限。
+- 未啟用伺服器端 refusal fallback；模型拒答時前端會顯示錯誤訊息。
+
+### 補習班解答連結與校準（`db/seed/answer_sources.json`）
+
+- 高點／來勝：103–115 年六科各一份公開 PDF（`https://news.get.com.tw/File/News/<id>.pdf`），共 78 份。
+- 公職王：69 份擬答採檔案直連（站內下載按鈕需登入會員；直連為站方決定採用），另 6 份連歷屆試題列表頁。
+- 網站只放連結，不轉載解答內容。
+- 校準：`node work/tools/dl_answers.cjs` 下載上述 PDF 至 `work/answers/`（不進版控），`py -3 -I work/tools/extract.py work/answers/pdf work/answers/txt` 轉文字（設有禁止複製保護的 PDF 不抽取），`node work/tools/calib.cjs` 以解答文字試跑批改引擎，列出得分要點涵蓋偏低或計算值不符的題目供人工檢視。`work/` 整個目錄已列入 `.gitignore`。

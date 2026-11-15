@@ -98,3 +98,11 @@ details summary { cursor: pointer; font-weight: 600; }
 }
 @media (max-width: 560px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } .search { display: none; } }
 @media print { .topbar, .sidebar { display: none; } .content { padding: 0; } }
+
+/* 自動批改 */
+.grade-box { border: 1px solid var(--line); border-left: 4px solid var(--navy); border-radius: 8px; padding: .7rem .9rem; margin-top: .7rem; background: #fbfcfe; }
+.grade-box.ai { border-left-color: var(--purple); background: #fbf9ff; }
+.grade-box table td { vertical-align: top; }
+.rubric-box { background: #f6faf7; border: 1px solid #d5e8dc; border-radius: 8px; padding: .7rem .9rem; }
+.rubric-box table { margin: .4rem 0; background: #fff; }
+button:disabled { opacity: .5; cursor: not-allowed; }

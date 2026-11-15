@@ -21,8 +21,9 @@ const topics = all('SELECT * FROM topics ORDER BY subject_id, name');
 const qt = all('SELECT * FROM question_topics');
 const ql = all('SELECT * FROM question_laws');
 const answers = all('SELECT * FROM answers ORDER BY id');
+const rubrics = Object.fromEntries(all('SELECT * FROM rubrics').map((r) => [r.question_id, parse(r.data)]));
 const questions = all('SELECT * FROM questions ORDER BY year DESC, subject_id, exam_type, question_no').map((q) => ({
-  ...q, options: parse(q.options),
+  ...q, options: parse(q.options), rubric: rubrics[q.id] || null,
   topic_ids: qt.filter((x) => x.question_id === q.id).map((x) => x.topic_id),
   laws: ql.filter((x) => x.question_id === q.id).map((x) => ({ law_id: x.law_id, article_no: x.article_no })),
   answers: answers.filter((a) => a.question_id === q.id),

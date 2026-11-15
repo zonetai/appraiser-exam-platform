@@ -30,7 +30,8 @@ async function fetchLaw(pcode) {
   const html = await get(`https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=${pcode}`);
   const amended = html.match(/修正日期[^<]*<\/th>\s*<td[^>]*>\s*([^<]+)/)?.[1]?.trim() || html.match(/(民國\s*\d+\s*年\s*\d+\s*月\s*\d+\s*日)/)?.[1] || null;
   const articles = [];
-  const re = /<div class="col-no">\s*<a[^>]*>\s*([^<]+?)\s*<\/a>\s*<\/div>\s*<div class="col-data">([\s\S]*?)<\/div>\s*<\/div>\s*(?=<div class="row">|<\/div>|$)/g;
+  // 有附件的條文在條號前多一個迴紋針圖示（<i>…</i><span class="sr-only">…</span>），需一併容許
+  const re = /<div class="col-no">(?:\s*<i[^>]*><\/i>\s*<span[^>]*>[^<]*<\/span>)?\s*<a[^>]*>\s*([^<]+?)\s*<\/a>\s*<\/div>\s*<div class="col-data">([\s\S]*?)<\/div>\s*<\/div>\s*(?=<div class="row">|<\/div>|$)/g;
   let m;
   while ((m = re.exec(html))) {
     const no = m[1].replace(/\s/g, '').replace(/^第|條$/g, '');

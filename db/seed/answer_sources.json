@@ -1,0 +1,1555 @@
+{
+ "checked_at": "2026-11-15",
+ "note": "高點為其新聞稿區公開之單科詳解 PDF。公職王擬答採檔案直連（站內下載按鈕需登入會員；直連由站方決定採用）。本站僅提供連結，不轉載內容。",
+ "sources": [
+  {
+   "school": "公職王",
+   "year": 115,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 115 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/24231/anspdf/115%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%28%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB%29-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 115,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 115 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/80220.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 115,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 115 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/24232/anspdf/115%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%28%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB%29-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 115,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 115 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/80216.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 115,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 115 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/24242/anspdf/115%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%28%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB%29-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 115,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 115 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/80218.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 115,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 115 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/80219.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 115,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 115 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/24205/anspdf/115%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%28%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB%29-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 115,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 115 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/80217.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 115,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 115 年《民法物權與不動產法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/24241/anspdf/115%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%28%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB%29-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 115,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 115 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/80221.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 114,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 114 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/22634/anspdf/114%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 114,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 114 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/76989.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 114,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 114 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/22645/anspdf/114%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 114,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 114 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/76992.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 114,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 114 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/22643/anspdf/114%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 114,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 114 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/76993.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 114,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 114 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/76990.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 114,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 114 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/22642/anspdf/114%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 114,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 114 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/76991.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 114,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 114 年《民法物權與不動產法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/22644/anspdf/114%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 114,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 114 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/76988.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 113,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 113 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/21140/anspdf/113%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 113,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 113 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/74218.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 113,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 113 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/21141/anspdf/113%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 113,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 113 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/74221.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 113,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 113 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/21166/anspdf/113%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 113,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 113 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/74222.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 113,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 113 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/74219.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 113,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 113 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/21167/anspdf/113%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 113,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 113 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/74220.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 113,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 113 年《民法物權與不動產法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/21142/anspdf/113%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 113,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 113 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/74217.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 112,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 112 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/19489/anspdf/112%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 112,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 112 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/69846.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 112,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 112 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/19490/anspdf/112%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 112,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 112 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/69849.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 112,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 112 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/19479/anspdf/112%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 112,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 112 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/69850.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 112,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 112 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/19493/anspdf/112%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 112,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 112 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/69847.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 112,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 112 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/19480/anspdf/112%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 112,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 112 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/69848.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 112,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 112 年《民法物權與不動產法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/19483/anspdf/112%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 112,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 112 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/69845.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 111,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 111 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/16894/anspdf/111%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 111,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 111 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/65139.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 111,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 111 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/16891/anspdf/111%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 111,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 111 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/65142.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 111,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 111 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/17268/anspdf/111%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 111,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 111 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/65143.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 111,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 111 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/16893/anspdf/111%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 111,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 111 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/65140.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 111,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 111 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/16888/anspdf/111%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 111,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 111 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/65141.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 111,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 111 年《民法物權與不動產法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/16895/anspdf/111%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 111,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 111 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/65138.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 110,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 110 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14115/anspdf/110%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 110,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 110 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/59417.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 110,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 110 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14104/anspdf/110%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 110,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 110 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/59413.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 110,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 110 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14103/anspdf/110%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 110,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 110 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/59415.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 110,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 110 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14208/anspdf/110%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 110,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 110 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/59416.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 110,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 110 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14102/anspdf/110%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 110,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 110 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/59414.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 110,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 110 年《民法物權與不動產法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14116/anspdf/110%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 110,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 110 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/59418.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 109,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 109 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14026/anspdf/109%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 109,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 109 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/54023.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 109,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 109 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14032/anspdf/109%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 109,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 109 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/54019.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 109,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 109 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14033/anspdf/109%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 109,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 109 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/54021.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 109,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 109 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14029/anspdf/109%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 109,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 109 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/54022.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 109,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 109 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14028/anspdf/109%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 109,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 109 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/54020.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 109,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 109 年《民法物權與不動產法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14027/anspdf/109%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 109,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 109 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/54024.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 108,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 108 年《土地利用法規》擬答（歷屆試題區）",
+   "url": "https://www.public.com.tw/previousexam?page=1&mode=0&subject=AB0035#108-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F",
+   "login_required": true,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 108,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 108 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/48034.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 108,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 108 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/10162/anspdf/108%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 108,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 108 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/48030.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 108,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 108 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/10445/anspdf/108%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 108,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 108 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/48032.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 108,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 108 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14260/anspdf/108%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 108,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 108 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/48033.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 108,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 108 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/10156/anspdf/108%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 108,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 108 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/48031.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 108,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 108 年《民法物權與不動產法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/10427/anspdf/108%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 108,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 108 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/48035.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 107,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 107 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14228/anspdf/107%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 107,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 107 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/42779.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 107,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 107 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14222/anspdf/107%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 107,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 107 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/42775.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 107,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 107 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14284/anspdf/107%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 107,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 107 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/42777.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 107,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 107 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14109/anspdf/107%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 107,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 107 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/42778.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 107,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 107 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/8842/anspdf/107%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 107,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 107 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/42776.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 107,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 107 年《民法物權與不動產法規》擬答（歷屆試題區）",
+   "url": "https://www.public.com.tw/previousexam?page=1&mode=0&subject=AB0035#107-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F",
+   "login_required": true,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 107,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 107 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/42780.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 106,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 106 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14227/anspdf/106%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 106,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 106 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/37278.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 106,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 106 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14235/anspdf/106%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 106,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 106 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/37274.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 106,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 106 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14285/anspdf/106%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 106,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 106 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/37276.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 106,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 106 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14108/anspdf/106%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 106,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 106 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/37277.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 106,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 106 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/8840/anspdf/106%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 106,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 106 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/37275.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 106,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 106 年《民法物權與不動產法規》擬答（歷屆試題區）",
+   "url": "https://www.public.com.tw/previousexam?page=1&mode=0&subject=AB0035#106-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F",
+   "login_required": true,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 106,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 106 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/37279.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 105,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 105 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14226/anspdf/105%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 105,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 105 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/30923.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 105,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 105 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14236/anspdf/105%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 105,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 105 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/30919.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 105,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 105 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14286/anspdf/105%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 105,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 105 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/30921.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 105,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 105 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14107/anspdf/105%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 105,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 105 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/30922.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 105,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 105 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/8838/anspdf/105%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 105,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 105 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/30920.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 105,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 105 年《民法物權與不動產法規》擬答（歷屆試題區）",
+   "url": "https://www.public.com.tw/previousexam?page=1&mode=0&subject=AB0035#105-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F",
+   "login_required": true,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 105,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 105 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/30924.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 104,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 104 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14225/anspdf/104%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 104,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 104 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/22605.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 104,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 104 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14237/anspdf/104%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 104,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 104 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/22601.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 104,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 104 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14287/anspdf/104%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 104,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 104 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/22603.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 104,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 104 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14106/anspdf/104%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 104,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 104 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/22604.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 104,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 104 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/8837/anspdf/104%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 104,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 104 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/22602.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 104,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 104 年《民法物權與不動產法規》擬答（歷屆試題區）",
+   "url": "https://www.public.com.tw/previousexam?page=1&mode=0&subject=AB0035#104-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F",
+   "login_required": true,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 104,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 104 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/22606.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 103,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "公職王 103 年《土地利用法規》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14224/anspdf/103%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E5%9C%9F%E5%9C%B0%E5%88%A9%E7%94%A8%E6%B3%95%E8%A6%8F.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 103,
+   "subject": "土地利用法規",
+   "scope": "single",
+   "label": "高點／來勝 103 年《土地利用法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/17262.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 103,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "公職王 103 年《不動產估價理論》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14238/anspdf/103%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E7%90%86%E8%AB%96.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 103,
+   "subject": "不動產估價理論",
+   "scope": "single",
+   "label": "高點／來勝 103 年《不動產估價理論》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/17257.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 103,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "公職王 103 年《不動產估價實務》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14288/anspdf/103%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%AF%A6%E5%8B%99.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 103,
+   "subject": "不動產估價實務",
+   "scope": "single",
+   "label": "高點／來勝 103 年《不動產估價實務》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/17260.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 103,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "公職王 103 年《不動產投資分析》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/14105/anspdf/103%E5%B0%88%E6%8A%80%E9%AB%98%E8%80%83-%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E6%8A%95%E8%B3%87%E5%88%86%E6%9E%90.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 103,
+   "subject": "不動產投資分析",
+   "scope": "single",
+   "label": "高點／來勝 103 年《不動產投資分析》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/17261.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 103,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "公職王 103 年《不動產經濟學》擬答（PDF）",
+   "url": "https://www.public.com.tw/TestFileManage/8836/anspdf/103%E4%B8%8D%E5%8B%95%E7%94%A2%E4%BC%B0%E5%83%B9%E5%B8%AB-%E4%B8%8D%E5%8B%95%E7%94%A2%E7%B6%93%E6%BF%9F%E5%AD%B8.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 103,
+   "subject": "不動產經濟學",
+   "scope": "single",
+   "label": "高點／來勝 103 年《不動產經濟學》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/17259.pdf",
+   "login_required": false,
+   "verified": true
+  },
+  {
+   "school": "公職王",
+   "year": 103,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "公職王 103 年《民法物權與不動產法規》擬答（歷屆試題區）",
+   "url": "https://www.public.com.tw/previousexam?page=1&mode=0&subject=AB0035#103-%E6%B0%91%E6%B3%95%E7%89%A9%E6%AC%8A%E8%88%87%E4%B8%8D%E5%8B%95%E7%94%A2%E6%B3%95%E8%A6%8F",
+   "login_required": true,
+   "verified": true
+  },
+  {
+   "school": "高點／來勝",
+   "year": 103,
+   "subject": "民法物權與不動產法規",
+   "scope": "single",
+   "label": "高點／來勝 103 年《民法物權與不動產法規》詳解（PDF）",
+   "url": "https://news.get.com.tw/File/News/17263.pdf",
+   "login_required": false,
+   "verified": true
+  }
+ ],
+ "not_found": [
+  "高點／來勝：查無一份 PDF 含多科的「全套詳解」；新聞稿 PDF 標題雖為「全套詳解」，實為每科一檔（已知的 76992.pdf 是 114 年不動產估價理論、69845.pdf 是 112 年民法物權與不動產法規），故全數列為 scope=single",
+  "高點／來勝：real-estate.get.com.tw/answer/ 頁面原始碼註解中的「110不動產估價師線上解題講座」YouTube 影片，實際標題為 110 地政士解題講座，非估價師，未列入",
+  "公職王：113、114、115 年不動產投資分析——估價師類科列表無此科，查無擬答",
+  "公職王：108 年土地利用法規、103–107 年民法物權與不動產法規——列表有「解答」按鈕但須登入，未找到可匿名開啟的檔案（已以列表頁網址列入 sources，verified=false）",
+  "志光／保成／學儒／超級函授／金榜函授：與公職王同一體系，估價師擬答即公職王所列；各品牌另查無獨立的估價師解答頁",
+  "高上：與高點同集團，高上高普考解答區（goldensun.get.com.tw）僅高普特考，查無估價師解答",
+  "三民輔考（3people.com.tw）：不動產估價師僅有歷屆試題 PDF（抽查 108、113 年不動產估價理論，無擬答）；「名師申論擬答」只有不動產經紀人",
+  "鼎文：歷屆試題區（info.ting-wen.com/exam_old.aspx）有地政士、不動產經紀人，查無不動產估價師",
+  "千華：搜尋僅見不動產經紀人用書與試題，查無估價師解答",
+  "TKB／百官網：搜尋查無估價師解答",
+  "大東海：搜尋查無估價師解答",
+  "首宇（陳翰基／陳漢基）：搜尋查無相關網站或估價師解答",
+  "WordUp：搜尋查無估價師解答",
+  "大日出版（bigsun.com.tw）：僅販售估價師考試用書，無線上公開解答",
+  "名師個人部落格／粉專／Medium／方格子 vocus／痞客邦：查無估價師專技高考的自擬解答；Medium 僅見一篇 108 年地特不動產估價手寫擬答（非估價師考試，頁面回 403 未能開啟，未列入）",
+  "PTT、Dcard：僅有上榜心得文（104、108、109、111、112、113、115 年等），不含逐題擬答",
+  "6laws.net、lawplayer.com：僅彙整歷屆試題，無擬答"
+ ]
+}

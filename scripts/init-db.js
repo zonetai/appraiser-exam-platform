@@ -133,6 +133,52 @@ for (const a of answers) {
   aCount++;
 }
 
+// ---------- rubrics（得分要點）與補習班解答連結 ----------
+db.exec('DELETE FROM rubrics');
+const insRub = db.prepare('INSERT OR REPLACE INTO rubrics (question_id,data) VALUES (?,?)');
+const linkSeen = new Set(db.prepare(`SELECT question_id, source_url FROM answers WHERE source_url IS NOT NULL`).all().map((r) => `${r.question_id}|${r.source_url}`));
+let linkCount = 0;
+function addLink(qid, name, url, note) {
+  if (!url || linkSeen.has(`${qid}|${url}`)) return;
+  linkSeen.add(`${qid}|${url}`);
+  insA.run(qid, name, url, null, 'link', null, note ?? '補習班解答為各機構著作，本站僅提供原始連結。');
+  linkCount++;
+}
+const RUB_DIR = path.join(SEED_DIR, 'rubrics');
+let rubCount = 0;
+if (fs.existsSync(RUB_DIR)) {
+  for (const f of fs.readdirSync(RUB_DIR).filter((x) => x.endsWith('.json')).sort()) {
+    const code = f.replace(/\.json$/, '');
+    let sid; try { sid = subjectId(code); } catch { console.warn(`rubrics/${f}：找不到考科`); continue; }
+    let list; try { list = JSON.parse(fs.readFileSync(path.join(RUB_DIR, f), 'utf8').replace(/^﻿/, '')); } catch (e) { console.warn(`rubrics/${f}：JSON 解析失敗 ${e.message}`); continue; }
+    for (const r of list) {
+      const q = db.prepare(`SELECT id FROM questions WHERE year=? AND subject_id=? AND exam_type='申論' AND question_no=?`).get(r.year, sid, r.question_no);
+      if (!q) { console.warn(`得分要點找不到題目：${r.year} ${code} 第${r.question_no}題`); continue; }
+      if (!Array.isArray(r.points) || !r.points.length) continue;
+      const { year, question_no, sources, ...data } = r;
+      if (code === 'economics' || code === 'investment') data.laws_optional = true; // 這兩科法條僅作提示，不計分
+      insRub.run(q.id, JSON.stringify(data));
+      rubCount++;
+      for (const l of r.laws || []) { const lid = lawId(l.law); if (lid) for (const a of l.articles || []) insQL.run(q.id, lid, String(a)); }
+      for (const s of sources || []) addLink(q.id, s.name || '補習班解答', s.url);
+    }
+  }
+}
+// 另由 answer_sources.json 依「年度＋科目」或「年度全科」掛到每一題
+const srcFile = path.join(SEED_DIR, 'answer_sources.json');
+if (fs.existsSync(srcFile)) {
+  const src = JSON.parse(fs.readFileSync(srcFile, 'utf8').replace(/^﻿/, ''));
+  for (const s of src.sources || []) {
+    if (!s.url || s.verified === false) continue;
+    let rows;
+    if (s.scope === 'fullset' || s.subject === '全科') rows = db.prepare(`SELECT q.id FROM questions q JOIN subjects sj ON sj.id=q.subject_id WHERE q.year=? AND sj.code<>'chinese'`).all(s.year);
+    else { let sid; try { sid = subjectId(s.subject); } catch { continue; } rows = db.prepare('SELECT id FROM questions WHERE year=? AND subject_id=?').all(s.year, sid); }
+    const name = s.label || `${s.school}${s.scope === 'fullset' || s.subject === '全科' ? `（${s.year} 年全套詳解）` : `（${s.year} 年${s.subject}詳解）`}`;
+    const note = s.login_required ? '需登入該補習班會員才能下載；本站僅提供原始連結。' : undefined;
+    for (const row of rows) addLink(row.id, name, s.url, note);
+  }
+}
+
 // ---------- policies ----------
 const policies = loadSeed('policies.json');
 db.exec('DELETE FROM policies');
@@ -188,5 +234,5 @@ for (const p of plans) insSP.run(p.name, p.weeks ?? null, p.description ?? null,
 
 const count = (t) => db.prepare(`SELECT COUNT(*) AS n FROM ${t}`).get().n;
 console.log(`資料庫：${DB_PATH}`);
-console.log(`考科 ${count('subjects')}、考點 ${count('topics')}、試題 ${count('questions')}（本次處理 ${qCount}）、參考答案 ${aCount}、法規 ${count('laws')}（條文 ${count('law_articles')}）、政策 ${count('policies')}、資料來源 ${count('resources')}、補習班 ${count('cram_schools')}、猜題 ${count('predictions')}、統計 ${count('exam_stats')}、讀書計畫 ${count('study_plans')}`);
+console.log(`考科 ${count('subjects')}、考點 ${count('topics')}、試題 ${count('questions')}（本次處理 ${qCount}）、參考答案 ${aCount}、得分要點 ${rubCount}、補習班解答連結 ${linkCount}、法規 ${count('laws')}（條文 ${count('law_articles')}）、政策 ${count('policies')}、資料來源 ${count('resources')}、補習班 ${count('cram_schools')}、猜題 ${count('predictions')}、統計 ${count('exam_stats')}、讀書計畫 ${count('study_plans')}`);
 db.close();

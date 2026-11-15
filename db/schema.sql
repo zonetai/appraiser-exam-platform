@@ -206,3 +206,9 @@ CREATE INDEX IF NOT EXISTS idx_questions_year ON questions(year);
 CREATE INDEX IF NOT EXISTS idx_questions_subject ON questions(subject_id);
 CREATE INDEX IF NOT EXISTS idx_policies_date ON policies(date);
 CREATE INDEX IF NOT EXISTS idx_attempts_q ON attempts(question_id);
+
+-- 得分要點（自動批改用），每題一筆 JSON
+CREATE TABLE IF NOT EXISTS rubrics (
+  question_id INTEGER PRIMARY KEY REFERENCES questions(id) ON DELETE CASCADE,
+  data        TEXT NOT NULL
+);
