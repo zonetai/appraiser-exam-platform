@@ -79,7 +79,7 @@
       <h1>總覽</h1>
       <div class="grid grid-4">
         <div class="card stat"><div class="num">${o.questions}</div><div class="label">歷年試題（${o.year_min ? roc(o.year_min) + '–' + roc(o.year_max) : '—'}）</div></div>
-        <div class="card stat"><div class="num">${o.answers}</div><div class="label">參考答案／解題要點</div></div>
+        <div class="card stat"><div class="num">${o.rubrics}</div><div class="label">題有得分要點・可自動批改（另有 ${o.links} 個補習班解答連結）</div></div>
         <div class="card stat"><div class="num">${o.policies}</div><div class="label">政策與修法動態</div></div>
         <div class="card stat"><div class="num">${o.laws}<span class="muted" style="font-size:1rem">／${o.articles}條</span></div><div class="label">法規與重點條文</div></div>
       </div>
@@ -171,17 +171,72 @@
     ['計算與應用：公式、步驟、單位、結果合理（無計算則看案例應用）', 20],
     ['結論與時間：有明確結論、篇幅與時間控制得當', 10],
   ];
+  // 得分要點（本站原創）
+  function renderRubric(r) {
+    if (!r) return '';
+    const lawsTxt = (r.laws || []).map((l) => `${esc(l.law)}${(l.articles || []).length ? ' 第 ' + l.articles.map(esc).join('、') + ' 條' : ''}`).join('；');
+    return `<div class="rubric-box"><h3 style="margin-top:0">本站得分要點 <span class="tag green">自動批改依據</span></h3>
+      ${r.summary ? `<p>${esc(r.summary)}</p>` : ''}
+      ${(r.outline || []).length ? `<b class="small">建議大綱</b><ul class="small">${r.outline.map((o) => `<li>${esc(o)}</li>`).join('')}</ul>` : ''}
+      <table><tr><th>得分點</th><th style="width:52px">配重</th><th>關鍵詞</th></tr>${r.points.map((p) => `<tr><td><b>${esc(p.title)}</b>${p.note ? `<div class="small muted">${esc(p.note)}</div>` : ''}</td><td>${p.weight}%</td><td class="small">${(p.keywords || []).map((k) => `<span class="tag">${esc(String(k).split('|')[0])}</span>`).join('')}</td></tr>`).join('')}</table>
+      ${lawsTxt ? `<p class="small"><b>應引用法條：</b>${lawsTxt}</p>` : ''}
+      ${(r.answers || []).length ? `<p class="small"><b>計算參考值：</b>${r.answers.map((a) => `${esc(a.label)} ≈ ${Number(a.value).toLocaleString('zh-TW', { maximumFractionDigits: 4 })}${esc(a.unit || '')}`).join('；')}</p>` : ''}
+      ${r.figure ? `<p class="small"><b>應畫圖：</b>${esc(r.figure)}</p>` : ''}
+      ${r.note ? `<p class="small muted">※ ${esc(r.note)}</p>` : ''}
+      <p class="small muted">得分要點為本站依現行法規與通說整理，非考選部或補習班公布之標準答案。</p></div><hr>`;
+  }
+  // 自動批改結果
+  function renderGrade(res) {
+    const cls = res.pct >= 80 ? 'green' : res.pct >= 60 ? 'amber' : 'red';
+    const icon = { full: '✅', partial: '🟡', miss: '❌' };
+    return `<div class="grade-box">
+      <div class="flex between"><div><span class="score-big">${res.score}</span> <span class="muted">／ ${res.max} 分</span> <span class="tag ${cls}">${res.pct}%・${res.band}</span></div><span class="small muted">自動批改（關鍵詞比對）</span></div>
+      ${res.parts.map((p) => `<div class="flex small" style="margin:.2rem 0"><span style="width:170px">${esc(p.label)}（${Math.round(p.weight * 100)}%）</span><div class="bar ${p.score >= 0.8 ? 'green' : p.score >= 0.5 ? 'amber' : 'red'}" style="flex:1"><span style="width:${Math.round(p.score * 100)}%"></span></div><b style="width:44px;text-align:right">${Math.round(p.score * 100)}%</b></div>`).join('')}
+      <table style="margin-top:.5rem"><tr><th></th><th>得分點</th><th>配重</th><th>命中／可補充</th></tr>${res.points.map((p) => `<tr><td>${icon[p.status]}</td><td>${esc(p.title)}</td><td>${Math.round(p.weight)}%</td><td class="small">${p.hits.length ? `<span class="muted">命中：</span>${p.hits.map(esc).join('、')}` : ''}${p.status !== 'full' && p.misses.length ? `${p.hits.length ? '<br>' : ''}<span class="muted">可補：</span>${p.misses.slice(0, 5).map(esc).join('、')}` : ''}</td></tr>`).join('')}</table>
+      ${res.calc ? `<p class="small"><b>計算結果：</b>${res.calc.items.map((x) => `${x.hit ? '✅' : '❌'} ${esc(x.label)}`).join('　')}</p>` : ''}
+      ${res.law ? `<p class="small"><b>法條：</b>已引用 ${res.law.got.length}／${res.law.wanted.length} 條${res.law.cited.length ? `（你寫到的條號：${res.law.cited.slice(0, 12).map(esc).join('、')}）` : ''}</p>` : ''}
+      ${res.tips.length ? `<b class="small">改進建議</b><ul class="small">${res.tips.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : '<p class="small">各項皆達標，請再對照參考答案檢查論述是否正確。</p>'}
+      <p class="small muted">自動批改只檢查「有沒有寫到」，無法判斷論述對錯與邏輯；分數供自我檢核，不等於閱卷成績。</p></div>`;
+  }
+  // AI 批改（選用，需部署 Supabase Edge Function 並設定端點）
+  function aiConfig() { const c = window.APP_CONFIG || {}; return { endpoint: store.get('aiEndpoint', '') || c.aiEndpoint || '', key: store.get('aiKey', '') || c.aiAnonKey || '' }; }
+  async function aiGrade(q, answer) {
+    const { endpoint, key } = aiConfig();
+    const r = q.rubric || {};
+    const body = { question: { year: q.year, subject: q.subject_name, no: q.question_no, score: q.score || 25, text: q.text },
+      rubric: { summary: r.summary, points: (r.points || []).map((p) => ({ title: p.title, weight: p.weight, note: p.note })), laws: r.laws, outline: r.outline, answers: r.answers, figure: r.figure }, answer };
+    const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', ...(key ? { Authorization: `Bearer ${key}`, apikey: key } : {}) }, body: JSON.stringify(body) });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+    return data;
+  }
+  function renderAI(r, q) {
+    const cls = r.pct >= 80 ? 'green' : r.pct >= 60 ? 'amber' : 'red';
+    const li = (arr) => (arr || []).map((x) => `<li>${esc(x)}</li>`).join('');
+    return `<div class="grade-box ai"><div class="flex between"><div><span class="score-big">${r.score}</span> <span class="muted">／ ${q.score || 25} 分</span> <span class="tag ${cls}">${r.pct}%</span></div><span class="small muted">AI 批改</span></div>
+      ${r.overall ? `<p>${esc(r.overall)}</p>` : ''}
+      ${(r.breakdown || []).length ? `<table><tr><th>得分點</th><th style="width:70px">得分</th><th>評語</th></tr>${r.breakdown.map((b) => `<tr><td>${esc(b.title)}</td><td>${b.got}／${b.max}</td><td class="small">${esc(b.comment || '')}</td></tr>`).join('')}</table>` : ''}
+      ${(r.strengths || []).length ? `<b class="small">優點</b><ul class="small">${li(r.strengths)}</ul>` : ''}
+      ${(r.weaknesses || []).length ? `<b class="small">缺失</b><ul class="small">${li(r.weaknesses)}</ul>` : ''}
+      ${(r.suggestions || []).length ? `<b class="small">修改建議</b><ul class="small">${li(r.suggestions)}</ul>` : ''}
+      <p class="small muted">AI 批改為模型依得分要點所作之評估，可能有誤，請對照法條與參考答案。</p></div>`;
+  }
+
   async function question([id]) {
     const q = await api(`/questions/${id}`);
     const allTopics = state.topicsBySubject[q.subject_code] || (state.topicsBySubject[q.subject_code] = await api(`/topics?subject=${q.subject_code}`));
-    const sources = [...new Set(q.answers.map((a) => a.source_name))];
-    const answersHtml = q.answers.length ? `
+    const linkAnswers = q.answers.filter((a) => a.answer_type === 'link');
+    const textAnswers = q.answers.filter((a) => a.answer_type !== 'link');
+    const sources = [...new Set(textAnswers.map((a) => a.source_name))];
+    const linksHtml = linkAnswers.length ? `<h3>補習班解答原始連結</h3><ul class="small">${linkAnswers.map((a) => `<li><a href="${esc(a.source_url)}" target="_blank" rel="noopener">${esc(a.source_name)} ↗</a>${a.license_note && /登入/.test(a.license_note) ? ' <span class="tag amber">需會員登入</span>' : ''}</li>`).join('')}</ul><p class="small muted">※ 補習班詳解為各機構著作，本站只提供連結，不轉載內容。</p>` : '';
+    const answersHtml = textAnswers.length ? `
       <div class="tabs" id="ansTabs">${sources.map((s, i) => `<button class="${i === 0 ? 'active' : ''}" data-src="${esc(s)}">${esc(s)}</button>`).join('')}</div>
-      ${sources.map((s, i) => `<div class="ans-pane" data-src="${esc(s)}" style="${i ? 'display:none' : ''}">${q.answers.filter((a) => a.source_name === s).map((a) => `
+      ${sources.map((s, i) => `<div class="ans-pane" data-src="${esc(s)}" style="${i ? 'display:none' : ''}">${textAnswers.filter((a) => a.source_name === s).map((a) => `
         <div class="small muted flex between"><span>${a.author ? '作者：' + esc(a.author) + '・' : ''}類型：${a.answer_type === 'full' ? '完整解答' : a.answer_type === 'outline' ? '解題要點' : '外部連結'}${a.source_url ? `・<a href="${esc(a.source_url)}" target="_blank" rel="noopener">原始來源</a>` : ''}</span>
           ${String(a.id).startsWith('u') ? `<button class="btn btn-sm btn-danger" data-del-ans="${a.id}">刪除</button>` : ''}</div>
         ${a.content ? md(a.content) : '<p class="muted">僅提供連結</p>'}
-        ${a.license_note ? `<p class="small muted">※ ${esc(a.license_note)}</p>` : ''}`).join('<hr>')}</div>`).join('')}` : '<p class="empty">此題尚無參考答案。可在下方「加入解答」補登補習班解題要點或自撰答案。</p>';
+        ${a.license_note ? `<p class="small muted">※ ${esc(a.license_note)}</p>` : ''}`).join('<hr>')}</div>`).join('')}` : (q.rubric ? '' : '<p class="empty">此題尚無參考答案。可在下方「加入解答」補登補習班解題要點或自撰答案。</p>');
+    const aiOn = !!aiConfig().endpoint;
 
     app.innerHTML = `
       <p class="small"><a href="#/questions?subject=${q.subject_code}&year=${q.year}">← ${roc(q.year)} ${esc(q.subject_name)}</a></p>
@@ -209,16 +264,22 @@
           <div class="flex" style="margin:.4rem 0"><button class="btn btn-sm" id="tStart">▶ 開始計時</button><button class="btn btn-sm" id="tPause">⏸ 暫停</button><button class="btn btn-sm" id="tReset">↺ 重設</button>
             <label class="small">倒數 <input id="tLimit" type="number" value="25" min="5" max="120" style="width:60px"> 分</label></div>
           <textarea id="answerText" placeholder="依「破題定義 → 法條依據 → 分析／學說 → 實務／計算 → 結論」架構作答。可直接在此打字，或在紙上作答後只填自評。">${esc(store.get(`draft-${q.id}`, ''))}</textarea>
-          <p class="small muted right" id="wordCount"></p>
-          <h3>自評量表（參考補習班申論批改標準）</h3>
-          <div class="rubric">${RUBRIC.map(([label, w], i) => `<div class="rubric-row"><span>${esc(label)}<span class="muted">（${w}）</span></span><input type="range" min="0" max="5" value="3" data-w="${w}" id="r${i}"><b id="rv${i}">${w * 0.6}</b></div>`).join('')}</div>
-          <div class="flex between" style="margin-top:.6rem"><span>自評總分：<span class="score-big" id="rubricTotal">60</span></span>
+          <div class="flex between"><div class="flex">
+              <button class="btn btn-accent" id="autoGrade" ${q.rubric ? '' : 'disabled title="本題尚未建立得分要點"'}>🤖 自動批改</button>
+              ${aiOn ? '<button class="btn" id="aiGrade">✨ AI 批改</button>' : ''}
+            </div><span class="small muted" id="wordCount"></span></div>
+          <div id="gradeResult"></div>
+          <div id="aiResult"></div>
+          <details style="margin-top:.6rem"><summary>手動自評量表（紙上作答或想自行評分時使用）</summary>
+            <div class="rubric" style="margin-top:.5rem">${RUBRIC.map(([label, w], i) => `<div class="rubric-row"><span>${esc(label)}<span class="muted">（${w}）</span></span><input type="range" min="0" max="5" value="3" data-w="${w}" id="r${i}"><b id="rv${i}">${w * 0.6}</b></div>`).join('')}</div>
+            <p>自評總分：<span class="score-big" id="rubricTotal">60</span></p></details>
+          <div class="flex between" style="margin-top:.6rem"><span class="small" id="scoreSource">紀錄將採用：<b>手動自評</b></span>
             <div class="flex"><input id="attemptNote" placeholder="備註（錯在哪、下次要補什麼）" style="width:230px"><button class="btn btn-primary" id="saveAttempt">儲存練習紀錄</button></div></div>
-          ${q.attempts.length ? `<h3>歷次練習</h3><table><tr><th>時間</th><th>模式</th><th>用時</th><th>自評</th><th>備註</th><th></th></tr>${q.attempts.map((a) => `<tr><td>${esc(a.started_at)}</td><td>${esc(a.mode)}</td><td>${a.duration_sec != null ? fmtTime(a.duration_sec) : '—'}</td><td>${a.self_score ?? '—'}</td><td>${esc(a.notes || '')}</td><td><button class="btn btn-sm btn-danger" data-del-att="${a.id}">刪</button></td></tr>`).join('')}</table>` : ''}
+          ${q.attempts.length ? `<h3>歷次練習</h3><table><tr><th>時間</th><th>模式</th><th>用時</th><th>分數</th><th>評分方式</th><th>備註</th><th></th></tr>${q.attempts.map((a) => `<tr><td>${esc(a.started_at)}</td><td>${esc(a.mode)}</td><td>${a.duration_sec != null ? fmtTime(a.duration_sec) : '—'}</td><td>${a.self_score ?? '—'}</td><td>${a.graded_by === 'ai' ? 'AI' : a.graded_by === 'auto' ? '自動' : '自評'}</td><td>${esc(a.notes || '')}</td><td><button class="btn btn-sm btn-danger" data-del-att="${a.id}">刪</button></td></tr>`).join('')}</table>` : ''}
         </div>
         <div class="card">
-          <h2 style="margin-top:0">參考答案 <span class="muted small">${q.answers.length} 份</span></h2>
-          <details ${q.answers.length ? '' : 'open'}><summary>先自己作答，再展開看解答</summary><div style="margin-top:.6rem">${answersHtml}</div></details>
+          <h2 style="margin-top:0">參考答案 <span class="muted small">${q.rubric ? '得分要點・' : ''}${textAnswers.length} 份解題要點・${linkAnswers.length} 個補習班連結</span></h2>
+          <details ${q.rubric || q.answers.length ? '' : 'open'}><summary>先自己作答，再展開看解答與得分要點</summary><div style="margin-top:.6rem">${renderRubric(q.rubric)}${answersHtml}${linksHtml}</div></details>
           <details style="margin-top:.8rem"><summary>加入解答（補習班要點／自撰）</summary>
             <div style="margin-top:.5rem"><input id="ansSource" placeholder="來源，例：高點 113 考後解答 / 自撰" style="width:100%"><input id="ansUrl" placeholder="來源網址（選填）" style="width:100%;margin-top:.3rem">
             <textarea id="ansContent" placeholder="支援 Markdown。請以「解題要點」形式摘要補習班解答並附來源，避免整篇轉貼。"></textarea>
@@ -243,8 +304,25 @@
     ta.oninput = wc; wc();
     const calc = () => { let total = 0; RUBRIC.forEach(([, w], i) => { const v = Number($(`#r${i}`).value) / 5 * w; $(`#rv${i}`).textContent = Math.round(v); total += v; }); $('#rubricTotal').textContent = Math.round(total); return Math.round(total); };
     RUBRIC.forEach((_, i) => { $(`#r${i}`).oninput = calc; });
+    // 自動批改／AI 批改
+    let lastAuto = null; let lastAI = null;
+    const refreshSource = () => { $('#scoreSource').innerHTML = lastAI ? `紀錄將採用：<b>AI 批改 ${lastAI.pct} 分</b>` : lastAuto ? `紀錄將採用：<b>自動批改 ${lastAuto.pct} 分</b>` : '紀錄將採用：<b>手動自評</b>'; };
+    $('#autoGrade').onclick = () => {
+      const res = window.Grader.grade(ta.value, q.rubric, q);
+      if (!res.ok) { lastAuto = null; $('#gradeResult').innerHTML = `<div class="note">${esc(res.reason)}</div>`; refreshSource(); return; }
+      lastAuto = res; $('#gradeResult').innerHTML = renderGrade(res); refreshSource();
+      $('#gradeResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+    if ($('#aiGrade')) $('#aiGrade').onclick = async () => {
+      if (ta.value.replace(/\s/g, '').length < 30) return toast('請先完成作答');
+      const btn = $('#aiGrade'); btn.disabled = true; btn.textContent = '✨ AI 批改中…（約 20–60 秒）';
+      try { const r = await aiGrade(q, ta.value); lastAI = { ...r, pct: Math.round(r.score / (q.score || 25) * 100) }; $('#aiResult').innerHTML = renderAI(lastAI, q); refreshSource(); }
+      catch (e) { $('#aiResult').innerHTML = `<div class="note">AI 批改失敗：${esc(e.message)}</div>`; }
+      btn.disabled = false; btn.textContent = '✨ AI 批改';
+    };
     $('#saveAttempt').onclick = async () => {
-      await post('/attempts', { question_id: q.id, mode: 'practice', duration_sec: sec || null, self_score: calc(), rubric: RUBRIC.map(([, w], i) => Number($(`#r${i}`).value)), answer_text: ta.value || null, notes: $('#attemptNote').value || null });
+      const graded = lastAI ? { self_score: lastAI.pct, graded_by: 'ai' } : lastAuto ? { self_score: lastAuto.pct, graded_by: 'auto' } : { self_score: calc(), graded_by: 'self' };
+      await post('/attempts', { question_id: q.id, mode: 'practice', duration_sec: sec || null, ...graded, auto_score: lastAuto?.pct ?? null, ai_score: lastAI?.pct ?? null, rubric: RUBRIC.map(([, w], i) => Number($(`#r${i}`).value)), answer_text: ta.value || null, notes: $('#attemptNote').value || null });
       toast('已儲存練習紀錄'); localStorage.removeItem(`draft-${q.id}`); router();
     };
     $('#bmBtn').onclick = async () => { const r = await post('/bookmarks', { question_id: q.id }); toast(r.bookmarked ? '已收藏' : '已取消收藏'); router(); };
@@ -264,7 +342,7 @@
     const n = Number(params.get('n') || 4);
     if (!params.get('start')) {
       app.innerHTML = `<h1>模擬考</h1><div class="card">
-        <p>依考選部題型：申論題一科 4 題、每題 25 分、時間 2 小時。系統會從該科歷年題中抽出不同考點的題目組成一份考卷，計時結束後逐題自評並寫入學習紀錄。</p>
+        <p>依考選部題型：申論題一科 4 題、每題 25 分、時間 2 小時。系統會從該科歷年題中抽出不同考點的題目組成一份考卷，交卷後系統會依得分要點自動批改打字作答的題目，分數可再調整，並寫入學習紀錄。</p>
         <div class="row"><label>科目<br><select id="mSubject">${proOptions(subject)}</select></label>
           <label>題數<br><select id="mN">${[2, 3, 4, 5, 6].map((k) => `<option ${k === n ? 'selected' : ''}>${k}</option>`).join('')}</select></label>
           <label>時間（分）<br><input id="mMin" type="number" value="${n === 4 ? 120 : n * 30}" style="width:90px"></label>
@@ -279,10 +357,10 @@
     const total = exam.minutes * 60;
     app.innerHTML = `
       <div class="card sticky-exam flex between"><div><b>${esc(exam.subject.name)}</b> 模擬考・${exam.questions.length} 題・${exam.minutes} 分</div>
-        <div class="flex"><span class="timer" id="mTimer">--:--</span><button class="btn btn-sm" id="mNew">換一份</button><button class="btn btn-primary" id="mSubmit">交卷並自評</button></div></div>
+        <div class="flex"><span class="timer" id="mTimer">--:--</span><button class="btn btn-sm" id="mNew">換一份</button><button class="btn btn-primary" id="mSubmit">交卷並批改</button></div></div>
       ${exam.questions.map((q) => `<div class="card"><div class="meta small muted">第 ${q.order} 題（${q.score} 分）・原為 ${roc(q.year)} 第 ${q.question_no} 題</div><div class="q-text">${esc(q.text)}</div>
         <textarea data-q="${q.id}" placeholder="作答區（亦可紙上作答）">${esc(exam.answers[q.id] || '')}</textarea></div>`).join('')}
-      <div class="card flex between"><span class="muted small">交卷後逐題自評，紀錄會以「mock」模式存入學習紀錄。</span><button class="btn btn-primary" id="mSubmit2">交卷並自評</button></div>`;
+      <div class="card flex between"><span class="muted small">交卷後自動批改，紀錄會以「mock」模式存入學習紀錄。</span><button class="btn btn-primary" id="mSubmit2">交卷並批改</button></div>`;
     const tEl = $('#mTimer');
     const h = setInterval(() => { const left = total - Math.floor((Date.now() - exam.startedAt) / 1000); tEl.textContent = left >= 0 ? fmtTime(left) : '-' + fmtTime(-left); tEl.classList.toggle('warn', left < 600); if (left === 0) toast('時間到，請交卷'); }, 500);
     window._mockTimer && clearInterval(window._mockTimer); window._mockTimer = h;
@@ -291,18 +369,34 @@
     const submit = () => grade(exam, key);
     $('#mSubmit').onclick = submit; $('#mSubmit2').onclick = submit;
   }
-  function grade(exam, key) {
+  async function grade(exam, key) {
     clearInterval(window._mockTimer);
     const used = Math.floor((Date.now() - exam.startedAt) / 1000);
-    app.innerHTML = `<h1>自評 — ${esc(exam.subject.name)} <span class="muted small">用時 ${fmtTime(used)}</span></h1>
+    // 逐題自動批改（有打字作答且該題有得分要點者）
+    const auto = {};
+    for (const q of exam.questions) {
+      const ans = exam.answers[q.id];
+      if (!ans) continue;
+      const full = await api(`/questions/${q.id}`);
+      const res = window.Grader.grade(ans, full.rubric, { score: q.score });
+      if (res.ok) auto[q.id] = res;
+    }
+    const autoN = Object.keys(auto).length;
+    app.innerHTML = `<h1>批改 — ${esc(exam.subject.name)} <span class="muted small">用時 ${fmtTime(used)}</span></h1>
+      <p class="small muted">${autoN ? `已自動批改 ${autoN} 題並帶入分數，可自行調整。` : ''}紙上作答或未作答的題目請自行評分。</p>
       ${exam.questions.map((q) => `<div class="card"><div class="small muted">第 ${q.order} 題（${q.score} 分）</div><div class="q-text" style="font-size:.95rem">${esc(q.text)}</div>
         ${exam.answers[q.id] ? `<details><summary>我的作答</summary><div class="note">${esc(exam.answers[q.id])}</div></details>` : ''}
-        <div class="flex" style="margin-top:.5rem">自評得分（0–${q.score}）<input type="number" min="0" max="${q.score}" value="${Math.round(q.score * 0.6)}" data-g="${q.id}" style="width:80px"> <a href="#/question/${q.id}" target="_blank">看參考答案 ↗</a></div></div>`).join('')}
+        ${auto[q.id] ? `<details open><summary>自動批改結果：${auto[q.id].score}／${q.score} 分</summary>${renderGrade(auto[q.id])}</details>` : ''}
+        <div class="flex" style="margin-top:.5rem">採計得分（0–${q.score}）<input type="number" min="0" max="${q.score}" step="0.5" value="${auto[q.id] ? auto[q.id].score : Math.round(q.score * 0.6)}" data-g="${q.id}" style="width:80px"> <a href="#/question/${q.id}" target="_blank">看得分要點與參考答案 ↗</a></div></div>`).join('')}
       <div class="card flex between"><span>總分：<span class="score-big" id="gTotal">0</span> / ${exam.questions.reduce((a, q) => a + q.score, 0)}</span><button class="btn btn-primary" id="gSave">儲存成績</button></div>`;
-    const calc = () => { let t = 0; app.querySelectorAll('[data-g]').forEach((i) => { t += Number(i.value) || 0; }); $('#gTotal').textContent = t; };
+    const calc = () => { let t = 0; app.querySelectorAll('[data-g]').forEach((i) => { t += Number(i.value) || 0; }); $('#gTotal').textContent = Math.round(t * 10) / 10; };
     app.querySelectorAll('[data-g]').forEach((i) => { i.oninput = calc; }); calc();
     $('#gSave').onclick = async () => {
-      for (const q of exam.questions) { const g = Number(app.querySelector(`[data-g="${q.id}"]`).value) || 0; await post('/attempts', { question_id: q.id, mode: 'mock', duration_sec: Math.round(used / exam.questions.length), self_score: Math.round(g / q.score * 100), answer_text: exam.answers[q.id] || null, notes: `模擬考 ${g}/${q.score}` }); }
+      for (const q of exam.questions) {
+        const g = Number(app.querySelector(`[data-g="${q.id}"]`).value) || 0;
+        const a = auto[q.id];
+        await post('/attempts', { question_id: q.id, mode: 'mock', duration_sec: Math.round(used / exam.questions.length), self_score: Math.round(g / q.score * 100), graded_by: a && Math.abs(g - a.score) < 0.01 ? 'auto' : 'self', auto_score: a ? a.pct : null, answer_text: exam.answers[q.id] || null, notes: `模擬考 ${g}/${q.score}` });
+      }
       localStorage.removeItem(key); toast('已儲存模擬考成績'); location.hash = '#/me';
     };
   }
@@ -519,15 +613,24 @@
         <p class="small">及格方式（考試規則第 9 條）：總成績 = 國文×10% ＋ 專業六科平均×90%，滿 60 分及格；任一科 0 分或專業平均未滿 50 分不及格。首次考試為 90 年 12 月；101–115 年及格率 2.7%–24.1%。
           命題大綱：<a href="https://wwwc.moex.gov.tw/main/content/wHandMenuFile.ashx?file_id=2068" target="_blank" rel="noopener">考選部 PDF ↗</a>（107 年修正民法物權與不動產法規、土地利用法規、不動產估價實務）。</p>
         <table>${o.by_subject.filter((s) => s.code !== 'chinese').map((s) => `<tr><td style="width:180px"><b>${esc(s.name)}</b></td><td class="small">${esc(state.subjects.find((x) => x.code === s.code)?.description || '')}</td></tr>`).join('')}</table></div>
+      <div class="card"><h2 style="margin-top:0">自動批改說明</h2>
+        <ul><li><b>自動批改（內建、免費）</b>：依每題「得分要點」比對作答。計分＝得分要點涵蓋 70%（計算題含數值比對）＋法條引用 12%＋架構 10%＋篇幅 8%；無應引法條的題目，要點占 80%、架構 12%。只列關鍵詞而沒有論述會折減。</li>
+          <li>它檢查的是「有沒有寫到」，無法判斷論述對錯；請當成檢核表使用，再對照得分要點與補習班解答。</li>
+          <li><b>AI 批改（選用）</b>：由站方部署 Supabase Edge Function 後啟用，逐點給分並寫評語。若站方已設定，題目頁會出現「AI 批改」按鈕；也可在下方填入自己的端點。</li></ul>
+        <div class="row"><label>AI 批改端點網址<br><input id="aiEndpoint" style="width:340px" placeholder="https://xxxx.supabase.co/functions/v1/grade" value="${esc(store.get('aiEndpoint', '') || (window.APP_CONFIG || {}).aiEndpoint || '')}"></label>
+          <label>公開金鑰（Supabase anon／publishable key，選填）<br><input id="aiKey" style="width:260px" value="${esc(store.get('aiKey', '') || (window.APP_CONFIG || {}).aiAnonKey || '')}"></label>
+          <button class="btn btn-sm" id="saveAI">儲存</button></div></div>
       <div class="card"><h2 style="margin-top:0">資料來源與版權</h2>
         <ul><li><b>歷年試題</b>：考選部「歷年考畢試題」為公開資料。本站收錄 ${o.year_min ? roc(o.year_min) + '–' + roc(o.year_max) : '—'} 共 ${o.questions} 題，標示「待核對」者表示尚未逐字比對原卷。</li>
-        <li><b>補習班答案</b>：補習班考後解答屬各機構著作，本站以「解題要點」摘要並附來源連結，不整篇轉載。欲商業使用請取得授權。</li>
+        <li><b>補習班答案</b>：補習班考後解答屬各機構著作，本站每題提供原始連結與少數「解題要點」摘要，不整篇轉載。</li>
+        <li><b>得分要點</b>：本站依現行法規與通說為每題撰寫的原創評分依據，非考選部或補習班公布之標準答案。</li>
         <li><b>法規</b>：以全國法規資料庫為準，本站僅收錄常考重點條文。</li>
         <li><b>政策動態</b>：整理自內政部、財政部、中央銀行、公會公告與新聞。標示「待查證」者請自行確認原始文件。</li>
         <li><b>猜題</b>：系統依出題頻率、週期與政策熱度計算排序，加上人工／名師猜題，僅供規劃讀書優先順序。</li></ul>
         <h2>如何擴充資料</h2>
         <p class="small">所有資料來自 <code>db/seed/*.json</code>，修改後執行 <code>npm run init</code> 重新匯入（學習紀錄不會被清除）。抓取考選部試題：<code>npm run fetch:moex</code>。詳見 README.md。</p></div>`;
     $('#saveDate').onclick = () => { store.set('examDate', $('#examDate').value); toast('已儲存'); updateCountdown(); };
+    $('#saveAI').onclick = () => { store.set('aiEndpoint', $('#aiEndpoint').value.trim()); store.set('aiKey', $('#aiKey').value.trim()); toast('已儲存 AI 批改設定'); };
   }
   function updateCountdown() { const d = store.get('examDate', DEFAULT_EXAM_DATE); $('#examCountdown').textContent = d ? `距 ${d} 考試 ${daysTo(d)} 天` : ''; }
 
