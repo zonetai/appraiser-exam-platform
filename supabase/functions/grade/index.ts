@@ -5,6 +5,7 @@
 //   supabase functions deploy grade --no-verify-jwt
 //   supabase secrets set ANTHROPIC_API_KEY=<你的金鑰>          ← 金鑰只放在 Supabase，不進前端
 //   （選用）supabase secrets set ALLOWED_ORIGINS=https://zonetai.github.io
+//   （金鑰為全工作區範圍時必填）supabase secrets set ANTHROPIC_WORKSPACE_ID=wrkspc_...
 // 之後把函式網址填進 public/config.js 的 aiEndpoint。
 import Anthropic from "npm:@anthropic-ai/sdk";
 
@@ -13,7 +14,12 @@ const ALLOWED = (Deno.env.get("ALLOWED_ORIGINS") ?? "https://zonetai.github.io,h
   .split(",").map((s) => s.trim()).filter(Boolean);
 const HOURLY_LIMIT = Number(Deno.env.get("HOURLY_LIMIT_PER_IP") ?? "12");
 
-const client = new Anthropic({ apiKey: Deno.env.get("ANTHROPIC_API_KEY") });
+// 金鑰若是「全工作區」範圍，Anthropic 要求每次請求帶 anthropic-workspace-id；金鑰已綁定單一工作區則不必設定
+const WORKSPACE_ID = Deno.env.get("ANTHROPIC_WORKSPACE_ID");
+const client = new Anthropic({
+  apiKey: Deno.env.get("ANTHROPIC_API_KEY"),
+  ...(WORKSPACE_ID ? { defaultHeaders: { "anthropic-workspace-id": WORKSPACE_ID } } : {}),
+});
 
 // 盡力而為的每 IP 限流（同一執行個體內有效）；請另在 Anthropic Console 設定每月用量上限
 const hits = new Map<string, number[]>();
@@ -138,7 +144,12 @@ Deno.serve(async (req) => {
   } catch (error) {
     if (error instanceof Anthropic.RateLimitError) return json({ error: "AI 服務忙碌中，請稍後再試" }, 429, headers);
     if (error instanceof Anthropic.AuthenticationError) return json({ error: "站方 AI 金鑰無效" }, 503, headers);
-    if (error instanceof Anthropic.BadRequestError) return json({ error: "AI 服務拒絕此請求" }, 400, headers);
+    if (error instanceof Anthropic.APIError) console.error(`Anthropic ${error.status ?? "-"}: ${error.message}`);
+    if (error instanceof Anthropic.BadRequestError) {
+      if (/credit balance/i.test(error.message)) return json({ error: "站方 AI 額度不足，請通知站方儲值" }, 503, headers);
+      if (/workspace/i.test(error.message)) return json({ error: "站方 AI 金鑰未指定工作區" }, 503, headers);
+      return json({ error: "AI 服務拒絕此請求" }, 400, headers);
+    }
     if (error instanceof Anthropic.APIError) return json({ error: `AI 服務錯誤（${error.status ?? "連線"}）` }, 502, headers);
     console.error(error);
     return json({ error: "批改失敗" }, 500, headers);
