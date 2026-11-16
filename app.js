@@ -205,7 +205,8 @@
     const r = q.rubric || {};
     const body = { question: { year: q.year, subject: q.subject_name, no: q.question_no, score: q.score || 25, text: q.text },
       rubric: { summary: r.summary, points: (r.points || []).map((p) => ({ title: p.title, weight: p.weight, note: p.note })), laws: r.laws, outline: r.outline, answers: r.answers, figure: r.figure }, answer };
-    const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', ...(key ? { Authorization: `Bearer ${key}`, apikey: key } : {}) }, body: JSON.stringify(body) });
+    const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', ...(key ? { Authorization: `Bearer ${key}`, apikey: key } : {}) }, body: JSON.stringify(body) })
+      .catch(() => { throw new Error('無法連線到 AI 批改服務，請檢查網路後再試'); });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
     return data;
@@ -342,7 +343,7 @@
     const n = Number(params.get('n') || 4);
     if (!params.get('start')) {
       app.innerHTML = `<h1>模擬考</h1><div class="card">
-        <p>依考選部題型：申論題一科 4 題、每題 25 分、時間 2 小時。系統會從該科歷年題中抽出不同考點的題目組成一份考卷，交卷後系統會依得分要點自動批改打字作答的題目，分數可再調整，並寫入學習紀錄。</p>
+        <p>依考選部題型：申論題一科 4 題、每題 25 分、時間 2 小時。系統會從該科歷年題中抽出不同考點的題目組成一份考卷，交卷後系統會依得分要點自動批改打字作答的題目${aiConfig().endpoint ? '，並可一鍵送 AI 批改，由 AI 逐點給分、寫評語' : ''}；分數可再調整，並寫入學習紀錄。</p>
         <div class="row"><label>科目<br><select id="mSubject">${proOptions(subject)}</select></label>
           <label>題數<br><select id="mN">${[2, 3, 4, 5, 6].map((k) => `<option ${k === n ? 'selected' : ''}>${k}</option>`).join('')}</select></label>
           <label>時間（分）<br><input id="mMin" type="number" value="${n === 4 ? 120 : n * 30}" style="width:90px"></label>
@@ -360,7 +361,7 @@
         <div class="flex"><span class="timer" id="mTimer">--:--</span><button class="btn btn-sm" id="mNew">換一份</button><button class="btn btn-primary" id="mSubmit">交卷並批改</button></div></div>
       ${exam.questions.map((q) => `<div class="card"><div class="meta small muted">第 ${q.order} 題（${q.score} 分）・原為 ${roc(q.year)} 第 ${q.question_no} 題</div><div class="q-text">${esc(q.text)}</div>
         <textarea data-q="${q.id}" placeholder="作答區（亦可紙上作答）">${esc(exam.answers[q.id] || '')}</textarea></div>`).join('')}
-      <div class="card flex between"><span class="muted small">交卷後自動批改，紀錄會以「mock」模式存入學習紀錄。</span><button class="btn btn-primary" id="mSubmit2">交卷並批改</button></div>`;
+      <div class="card flex between"><span class="muted small">交卷後自動批改${aiConfig().endpoint ? '，並可送 AI 批改' : ''}；紀錄會以「mock」模式存入學習紀錄。</span><button class="btn btn-primary" id="mSubmit2">交卷並批改</button></div>`;
     const tEl = $('#mTimer');
     const h = setInterval(() => { const left = total - Math.floor((Date.now() - exam.startedAt) / 1000); tEl.textContent = left >= 0 ? fmtTime(left) : '-' + fmtTime(-left); tEl.classList.toggle('warn', left < 600); if (left === 0) toast('時間到，請交卷'); }, 500);
     window._mockTimer && clearInterval(window._mockTimer); window._mockTimer = h;
@@ -373,29 +374,66 @@
     clearInterval(window._mockTimer);
     const used = Math.floor((Date.now() - exam.startedAt) / 1000);
     // 逐題自動批改（有打字作答且該題有得分要點者）
-    const auto = {};
+    const auto = {}; const skip = {}; const fullQ = {}; const ai = {};
     for (const q of exam.questions) {
       const ans = exam.answers[q.id];
-      if (!ans) continue;
+      if (!ans || !ans.trim()) { skip[q.id] = '未在線上作答，請自行評分。'; continue; }
       const full = await api(`/questions/${q.id}`);
+      fullQ[q.id] = { ...full, score: q.score };
       const res = window.Grader.grade(ans, full.rubric, { score: q.score });
-      if (res.ok) auto[q.id] = res;
+      if (res.ok) auto[q.id] = res; else skip[q.id] = res.reason;
     }
     const autoN = Object.keys(auto).length;
+    const aiOn = !!aiConfig().endpoint;
+    // 可送 AI 批改的題目：有得分要點且作答達 30 字
+    const aiable = exam.questions.filter((q) => fullQ[q.id]?.rubric && (exam.answers[q.id] || '').replace(/\s/g, '').length >= 30);
     app.innerHTML = `<h1>批改 — ${esc(exam.subject.name)} <span class="muted small">用時 ${fmtTime(used)}</span></h1>
-      <p class="small muted">${autoN ? `已自動批改 ${autoN} 題並帶入分數，可自行調整。` : ''}紙上作答或未作答的題目請自行評分。</p>
+      <div class="card flex between"><span class="small">${autoN ? `🤖 已自動批改 ${autoN} 題並帶入分數。` : '沒有可自動批改的題目。'}${aiOn && aiable.length ? '可再送 AI 批改，由 AI 逐點給分並寫評語，分數會改採 AI 結果。' : ''}分數都可自行調整。</span>
+        ${aiOn && aiable.length ? `<button class="btn btn-accent" id="aiAll">✨ 全部 AI 批改（${aiable.length} 題）</button>` : ''}</div>
       ${exam.questions.map((q) => `<div class="card"><div class="small muted">第 ${q.order} 題（${q.score} 分）</div><div class="q-text" style="font-size:.95rem">${esc(q.text)}</div>
         ${exam.answers[q.id] ? `<details><summary>我的作答</summary><div class="note">${esc(exam.answers[q.id])}</div></details>` : ''}
-        ${auto[q.id] ? `<details open><summary>自動批改結果：${auto[q.id].score}／${q.score} 分</summary>${renderGrade(auto[q.id])}</details>` : ''}
-        <div class="flex" style="margin-top:.5rem">採計得分（0–${q.score}）<input type="number" min="0" max="${q.score}" step="0.5" value="${auto[q.id] ? auto[q.id].score : Math.round(q.score * 0.6)}" data-g="${q.id}" style="width:80px"> <a href="#/question/${q.id}" target="_blank">看得分要點與參考答案 ↗</a></div></div>`).join('')}
+        ${auto[q.id] ? `<details open><summary>🤖 自動批改結果：${auto[q.id].score}／${q.score} 分</summary>${renderGrade(auto[q.id])}</details>` : `<p class="small muted">未自動批改：${esc(skip[q.id] || '')}</p>`}
+        <div data-ai="${q.id}"></div>
+        <div class="flex" style="margin-top:.5rem">採計得分（0–${q.score}）<input type="number" min="0" max="${q.score}" step="0.5" value="${auto[q.id] ? auto[q.id].score : Math.round(q.score * 0.6)}" data-g="${q.id}" style="width:80px"> <span class="tag" data-src="${q.id}"></span>
+          ${aiOn && aiable.includes(q) ? `<button class="btn btn-sm" data-ai-btn="${q.id}">✨ AI 批改</button>` : ''}
+          <a href="#/question/${q.id}" target="_blank">看得分要點與參考答案 ↗</a></div></div>`).join('')}
       <div class="card flex between"><span>總分：<span class="score-big" id="gTotal">0</span> / ${exam.questions.reduce((a, q) => a + q.score, 0)}</span><button class="btn btn-primary" id="gSave">儲存成績</button></div>`;
-    const calc = () => { let t = 0; app.querySelectorAll('[data-g]').forEach((i) => { t += Number(i.value) || 0; }); $('#gTotal').textContent = Math.round(t * 10) / 10; };
+    const input = (id) => app.querySelector(`[data-g="${id}"]`);
+    // 目前採計的分數來自哪裡：與 AI／自動批改分數相同才算，手動改過就是自行評分
+    const source = (q) => { const g = Number(input(q.id).value) || 0; return ai[q.id] && Math.abs(g - ai[q.id].score) < 0.01 ? 'ai' : auto[q.id] && Math.abs(g - auto[q.id].score) < 0.01 ? 'auto' : 'self'; };
+    const calc = () => {
+      let t = 0;
+      exam.questions.forEach((q) => { t += Number(input(q.id).value) || 0; const s = source(q); const el = app.querySelector(`[data-src="${q.id}"]`); el.textContent = s === 'ai' ? '採 AI 批改' : s === 'auto' ? '採自動批改' : '自行評分'; el.className = `tag ${s === 'ai' ? 'green' : s === 'auto' ? '' : 'amber'}`; });
+      $('#gTotal').textContent = Math.round(t * 10) / 10;
+    };
     app.querySelectorAll('[data-g]').forEach((i) => { i.oninput = calc; }); calc();
+    const runAI = async (q) => {
+      const btn = app.querySelector(`[data-ai-btn="${q.id}"]`); const box = app.querySelector(`[data-ai="${q.id}"]`);
+      if (!btn || btn.disabled) return false;
+      btn.disabled = true; btn.textContent = '✨ 批改中…';
+      box.innerHTML = '<p class="small muted">AI 批改中，約 20–60 秒…</p>';
+      let ok = false;
+      try {
+        const r = await aiGrade(fullQ[q.id], exam.answers[q.id]);
+        ai[q.id] = { ...r, pct: Math.round(r.score / q.score * 100) };
+        box.innerHTML = `<details open><summary>✨ AI 批改結果：${r.score}／${q.score} 分</summary>${renderAI(ai[q.id], q)}</details>`;
+        input(q.id).value = r.score; calc(); ok = true;
+      } catch (e) { box.innerHTML = `<div class="note">AI 批改失敗：${esc(e.message)}</div>`; }
+      btn.disabled = false; btn.textContent = ai[q.id] ? '✨ 重新 AI 批改' : '✨ AI 批改';
+      return ok;
+    };
+    app.querySelectorAll('[data-ai-btn]').forEach((b) => { b.onclick = () => runAI(exam.questions.find((q) => String(q.id) === b.dataset.aiBtn)); });
+    if ($('#aiAll')) $('#aiAll').onclick = async () => {
+      const all = $('#aiAll'); all.disabled = true; all.textContent = '✨ AI 批改中…';
+      const done = await Promise.all(aiable.map(runAI));
+      const n = done.filter(Boolean).length;
+      toast(n === aiable.length ? `AI 已批改 ${n} 題` : `AI 批改完成 ${n}／${aiable.length} 題，失敗的題目可個別重試`);
+      all.disabled = false; all.textContent = `✨ 全部 AI 批改（${aiable.length} 題）`;
+    };
     $('#gSave').onclick = async () => {
       for (const q of exam.questions) {
-        const g = Number(app.querySelector(`[data-g="${q.id}"]`).value) || 0;
-        const a = auto[q.id];
-        await post('/attempts', { question_id: q.id, mode: 'mock', duration_sec: Math.round(used / exam.questions.length), self_score: Math.round(g / q.score * 100), graded_by: a && Math.abs(g - a.score) < 0.01 ? 'auto' : 'self', auto_score: a ? a.pct : null, answer_text: exam.answers[q.id] || null, notes: `模擬考 ${g}/${q.score}` });
+        const g = Number(input(q.id).value) || 0;
+        await post('/attempts', { question_id: q.id, mode: 'mock', duration_sec: Math.round(used / exam.questions.length), self_score: Math.round(g / q.score * 100), graded_by: source(q), auto_score: auto[q.id] ? auto[q.id].pct : null, ai_score: ai[q.id] ? ai[q.id].pct : null, answer_text: exam.answers[q.id] || null, notes: `模擬考 ${g}/${q.score}` });
       }
       localStorage.removeItem(key); toast('已儲存模擬考成績'); location.hash = '#/me';
     };
