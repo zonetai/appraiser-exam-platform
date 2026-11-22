@@ -422,7 +422,7 @@
         ${exam.answers[q.id] ? `<details><summary>我的作答</summary><div class="note">${esc(exam.answers[q.id])}</div></details>` : ''}
         ${auto[q.id] ? `<details open><summary>🤖 自動批改結果：${auto[q.id].score}／${q.score} 分</summary>${renderGrade(auto[q.id])}</details>` : `<p class="small muted">未自動批改：${esc(skip[q.id] || '')}</p>`}
         <div data-ai="${q.id}"></div>
-        <div class="flex" style="margin-top:.5rem">採計得分（0–${q.score}）<input type="number" min="0" max="${q.score}" step="0.5" value="${auto[q.id] ? auto[q.id].score : Math.round(q.score * 0.6)}" data-g="${q.id}" style="width:80px"> <span class="tag" data-src="${q.id}"></span>
+        <div class="flex" style="margin-top:.5rem">採計得分（0–${q.score}）<input type="number" min="0" max="${q.score}" step="0.5" value="${auto[q.id] ? auto[q.id].score : 0}" data-g="${q.id}" style="width:80px"> <span class="tag" data-src="${q.id}"></span>
           ${aiOn ? (aiable.includes(q) ? `<button class="btn btn-sm" data-ai-btn="${q.id}">✨ AI 批改</button>` : `<button class="btn btn-sm" disabled title="${esc(aiWhy(q))}">✨ AI 批改</button><span class="small muted">${esc(aiWhy(q))}</span>`) : ''}
           <a href="#/question/${q.id}" target="_blank">看得分要點與參考答案 ↗</a></div></div>`).join('')}
       <div class="card flex between"><span>總分：<span class="score-big" id="gTotal">0</span> / ${exam.questions.reduce((a, q) => a + q.score, 0)}</span><button class="btn btn-primary" id="gSave">儲存成績</button></div>`;
