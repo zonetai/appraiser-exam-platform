@@ -99,12 +99,21 @@
         </div>
         <div class="card">
           <h2 style="margin-top:0">最新政策動態</h2>
+          <div id="homeIsle"></div>
+          <h3>修法與考點整理</h3>
           ${o.recent_policies.map((p) => `<div class="q-item"><div class="meta">${esc(p.date)} ${p.category ? `<span class="tag">${esc(p.category)}</span>` : ''}</div><a href="#/policies?focus=${p.id}">${esc(p.title)}</a></div>`).join('') || '<p class="empty">尚無資料</p>'}
           <p class="right small"><a href="#/policies">全部政策動態 →</a></p>
           <h2>歷年及格率</h2>${statChart}
         </div>
       </div>
       <div class="card"><h2 style="margin-top:0">題庫覆蓋年度 × 科目</h2><p class="small muted">數字為已收錄題數，點擊可直接篩選。缺的格子代表尚未匯入，可用 <code>npm run fetch:moex</code> 補抓考選部試題。</p>${covTable}</div>`;
+    // 首頁帶出價值島最新三則政策快訊（選舉政見除外）；讀不到就留白
+    loadIsle().then((d) => {
+      const el = $('#homeIsle'); if (!el) return;
+      const top = d.briefs.filter((b) => b.layer === 'policy' && !ISLE_ELECTION.test(b.tag || '')).slice(0, 3);
+      if (!top.length) return;
+      el.innerHTML = `<div class="small muted">價值島每日觀測・${esc(d.updated || '')} 更新</div>${top.map((b) => `<div class="q-item"><div class="meta">${esc(b.d)} ${b.tag ? `<span class="tag">${esc(b.tag)}</span>` : ''}</div><a href="#/policies">${esc(b.t)}</a></div>`).join('')}`;
+    }).catch(() => {});
   }
   const daysTo = (d) => Math.ceil((new Date(d) - new Date()) / 86400000);
   const DEFAULT_EXAM_DATE = '2027-08-21'; // 116 年預定考試日（三民／公職王整理，以考選部公告為準）
@@ -512,13 +521,69 @@
     $('#pSubject').onchange = (e) => { location.hash = `#/predict?subject=${e.target.value}`; };
   }
 
+  // ---------- 價值島每日觀測 ----------
+  // 事務所製作的市場觀測站，每日自動更新。這裡在訪客開啟頁面時直接讀它的資料檔，
+  // 所以本站不必重新部署就會跟著更新；讀不到時只顯示連結，不影響其他功能。
+  const ISLE = { page: 'https://zonetai.com/value-isle/daily.html', data: ['https://zonetai.github.io/value-isle/assets/daily.js', 'https://zonetai.com/value-isle/assets/daily.js'] };
+  const ISLE_LAYERS = { policy: '政策氣候', ind: '個別條件', market: '市場潮位', intl: '國際海象' };
+  const ISLE_ELECTION = /九合一|選舉|大選|政見/; // 候選人政見不是考試範圍，預設收起
+  let islePromise = null;
+  function loadIsle() {
+    if (islePromise) return islePromise;
+    const custom = window.APP_CONFIG && window.APP_CONFIG.isleDataUrl;
+    const urls = custom ? [custom] : ISLE.data;
+    const stamp = new Date().toISOString().slice(0, 13).replace(/\D/g, ''); // 每小時換一次，避免讀到快取的舊檔
+    const tryLoad = (i) => new Promise((resolve, reject) => {
+      if (i >= urls.length) return reject(new Error('無法讀取價值島資料'));
+      const s = document.createElement('script'); let done = false;
+      const next = () => { if (done) return; done = true; clearTimeout(timer); s.remove(); tryLoad(i + 1).then(resolve, reject); };
+      const timer = setTimeout(next, 8000);
+      s.src = `${urls[i]}?t=${stamp}`; s.async = true; s.onerror = next;
+      s.onload = () => { if (done) return; if (window.DAILY && Array.isArray(window.DAILY.briefs)) { done = true; clearTimeout(timer); window.DAILY.briefs.sort((a, b) => String(b.d).localeCompare(String(a.d))); resolve(window.DAILY); } else next(); };
+      document.head.appendChild(s);
+    });
+    islePromise = tryLoad(0).catch((e) => { islePromise = null; throw e; });
+    return islePromise;
+  }
+  const safeUrl = (u) => (/^https?:\/\//i.test(u || '') ? u : '');
+  const isleItem = (b) => { const u = safeUrl(b.url); return `<div class="tl-item"><div class="date">${esc(b.d)} <span class="tag green">${esc(ISLE_LAYERS[b.layer] || b.layer)}</span> ${b.tag ? `<span class="tag">${esc(b.tag)}</span>` : ''}</div>
+      <div class="title">${esc(b.t)}</div><div class="small">${esc(b.s || '')}</div>
+      ${b.i ? `<div class="angle">📐 對估價的影響：${esc(b.i)}</div>` : ''}
+      <div class="small muted">${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(b.src || '來源')} ↗</a>` : esc(b.src || '')}</div></div>`; };
+  async function renderIsle() {
+    const link = `<a href="${ISLE.page}" target="_blank" rel="noopener">價值島每日觀測 ↗</a>`;
+    let d;
+    try { d = await loadIsle(); } catch (e) { const b = $('#isleBox'); if (b) b.innerHTML = `<h2 style="margin-top:0">📡 最新動態</h2><p class="small muted">暫時讀不到價值島的資料，請直接前往 ${link}。</p>`; return; }
+    let layer = store.get('isleLayer', 'policy'); let elect = store.get('isleElection', false); let more = false;
+    const draw = () => {
+      const box = $('#isleBox'); if (!box) return; // 已離開此頁
+      const inLayer = d.briefs.filter((b) => layer === 'all' || b.layer === layer);
+      const hidden = inLayer.filter((b) => ISLE_ELECTION.test(b.tag || '')).length;
+      const all = elect ? inLayer : inLayer.filter((b) => !ISLE_ELECTION.test(b.tag || ''));
+      const rows = more ? all : all.slice(0, 8);
+      const chip = (k, name) => `<button class="btn btn-sm ${layer === k ? 'btn-primary' : ''}" data-isle="${k}">${name}（${d.briefs.filter((b) => k === 'all' || b.layer === k).length}）</button>`;
+      box.innerHTML = `<div class="flex between"><h2 style="margin-top:0">📡 最新動態 <span class="muted small">價值島每日觀測・${esc(d.updated || '')} 更新</span></h2><span class="small">${link}</span></div>
+        <p class="small muted">由中泰不動產智庫每日整理，每則附「對估價的影響」與出處，保留近 45 天。這是時事觀測，用來掌握命題背景；法規以下方「修法與考點整理」及原始條文為準。</p>
+        <div class="flex" style="flex-wrap:wrap;gap:.4rem">${chip('policy', '政策氣候')}${chip('ind', '個別條件')}${chip('market', '市場潮位')}${chip('intl', '國際海象')}${chip('all', '全部')}
+          ${hidden ? `<label class="small"><input type="checkbox" id="isleElect" ${elect ? 'checked' : ''}> 顯示選舉政見（${hidden} 則）</label>` : ''}</div>
+        <div class="timeline" style="margin-top:.6rem">${rows.map(isleItem).join('') || '<p class="empty">這個分類目前沒有快訊</p>'}</div>
+        ${all.length > rows.length ? `<p class="right small"><a href="#" id="isleMore">顯示其餘 ${all.length - rows.length} 則 ↓</a></p>` : ''}`;
+      box.querySelectorAll('[data-isle]').forEach((b) => { b.onclick = () => { layer = b.dataset.isle; more = false; store.set('isleLayer', layer); draw(); }; });
+      if ($('#isleElect')) $('#isleElect').onchange = (e) => { elect = e.target.checked; store.set('isleElection', elect); draw(); };
+      if ($('#isleMore')) $('#isleMore').onclick = (e) => { e.preventDefault(); more = true; draw(); };
+    };
+    draw();
+  }
+
   // ---------- 政策動態 ----------
   async function policies(_, params) {
     const subject = params.get('subject') || ''; const cat = params.get('category') || ''; const q = params.get('q') || '';
     const cats = await api('/policy-categories');
     const rows = await api(`/policies?${new URLSearchParams({ ...(subject && { subject }), ...(cat && { category: cat }), ...(q && { q }) })}`);
     const focus = params.get('focus');
-    app.innerHTML = `<h1>政策與修法動態 <span class="muted small">${rows.length} 則</span></h1>
+    app.innerHTML = `<h1>政策動態</h1>
+      <div class="card" id="isleBox"><h2 style="margin-top:0">📡 最新動態</h2><p class="small muted">載入價值島每日觀測中…</p></div>
+      <h2>修法與考點整理 <span class="muted small">${rows.length} 則</span></h2>
       <div class="card"><div class="row"><label>科目<br><select id="poSubject">${subjectOptions(subject)}</select></label>
         <label>類別<br><select id="poCat"><option value="">全部</option>${cats.map((c) => `<option value="${esc(c.category)}" ${c.category === cat ? 'selected' : ''}>${esc(c.category || '未分類')}（${c.n}）</option>`).join('')}</select></label>
         <label>關鍵字<br><input id="poQ" value="${esc(q)}"></label><button class="btn btn-primary" id="poGo">篩選</button></div>
@@ -530,6 +595,7 @@
           <div class="small muted">${p.topic_names ? '考點：' + esc(p.topic_names) + '　' : ''}${p.source_url ? `<a href="${esc(p.source_url)}" target="_blank" rel="noopener">${esc(p.source_name || '來源')} ↗</a>` : esc(p.source_name || '')}</div></div>`).join('') || '<p class="empty">沒有符合的資料</p>'}</div></div>`;
     $('#poGo').onclick = () => { location.hash = `#/policies?${new URLSearchParams({ ...($('#poSubject').value && { subject: $('#poSubject').value }), ...($('#poCat').value && { category: $('#poCat').value }), ...($('#poQ').value && { q: $('#poQ').value }) })}`; };
     if (focus) setTimeout(() => $(`#p${focus}`)?.scrollIntoView({ block: 'center' }), 50);
+    renderIsle(); // 不等它：價值島讀取較慢或失敗時，下方的修法整理照常可用
   }
 
   // ---------- 法規 ----------
