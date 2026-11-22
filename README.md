@@ -149,3 +149,12 @@ supabase secrets set ANTHROPIC_API_KEY=<金鑰> --project-ref <專案代碼>
 - 讀不到資料時只顯示前往價值島的連結，不影響其他功能。
 - 資料網址可在 `public/config.js` 以 `isleDataUrl` 覆寫。
 - 下方的「修法與考點整理」仍由 `db/seed/policies.json` 維護，法規修正以這一區與原始條文為準。
+
+## 手寫答案照片上傳
+
+題目頁與模擬考的作答區下方可上傳手寫答案照片（每題最多 4 張）。流程：瀏覽器先把照片縮到長邊 1600 像素 → 送到 `grade` 函式（`action: "transcribe"`）由 Claude 逐字謄打 → 文字填入作答區 → 考生核對後再按自動批改或 AI 批改。
+
+- 需要已設定 AI 批改端點才會出現上傳區。
+- 照片只轉送辨識，本站與函式都不儲存；學習紀錄只存文字。
+- 辨識另計次數，預設每 IP 每小時 12 次（`OCR_HOURLY_LIMIT_PER_IP`）；模型可用 `OCR_MODEL` 另外指定。
+- 看不清楚的字會以「□」標示，批改前應先核對。

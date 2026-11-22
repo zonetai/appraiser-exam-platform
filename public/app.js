@@ -220,6 +220,68 @@
     if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
     return data;
   }
+  // ---------- 手寫答案照片 ----------
+  // 紙上作答後拍照上傳，由 AI 謄打成文字填入作答區，考生核對後再批改。
+  // 照片只在瀏覽器裡縮圖後送去辨識，本站不儲存照片，學習紀錄也只存文字。
+  const PHOTO_MAX = 4;
+  async function shrinkPhoto(file) {
+    let bmp;
+    try { bmp = await createImageBitmap(file, { imageOrientation: 'from-image' }); }
+    catch (e) { throw new Error(`讀不到「${file.name}」，請改用 JPG 或 PNG（iPhone 的 HEIC 檔請先轉成 JPG）`); }
+    const scale = Math.min(1, 1600 / Math.max(bmp.width, bmp.height)); // 長邊 1600 已足夠辨識手寫字
+    const c = document.createElement('canvas'); c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+    c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+    if (bmp.close) bmp.close();
+    let url = '';
+    for (const quality of [0.82, 0.7, 0.55]) { url = c.toDataURL('image/jpeg', quality); if (url.length < 1400000) break; }
+    return { name: file.name, url, media_type: 'image/jpeg', data: url.slice(url.indexOf(',') + 1) };
+  }
+  async function aiTranscribe(q, photos) {
+    const { endpoint, key } = aiConfig();
+    const body = { action: 'transcribe', question: { subject: q.subject_name, text: q.text }, images: photos.map((p) => ({ media_type: p.media_type, data: p.data })) };
+    const res = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', ...(key ? { Authorization: `Bearer ${key}`, apikey: key } : {}) }, body: JSON.stringify(body) })
+      .catch(() => { throw new Error('無法連線到辨識服務，請檢查網路後再試'); });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `HTTP ${res.status}`);
+    return data;
+  }
+  // 在 host 裡建立上傳區。getQ 回傳題目（可為 Promise）；onText 收到辨識出的文字
+  function photoWidget(host, getQ, onText) {
+    let photos = []; let busy = false; let msg = '';
+    const draw = () => {
+      host.innerHTML = `<div class="photo-box">
+        <div class="flex" style="flex-wrap:wrap;gap:.4rem">
+          <label class="btn btn-sm">📷 上傳手寫答案照片<input type="file" accept="image/*" multiple hidden ${busy || photos.length >= PHOTO_MAX ? 'disabled' : ''}></label>
+          ${photos.length ? `<button class="btn btn-sm btn-accent" data-ocr ${busy ? 'disabled' : ''}>${busy ? '🔎 辨識中…（約 10–40 秒）' : `🔎 辨識成文字（${photos.length} 張）`}</button>` : ''}
+          <span class="small muted">${photos.length ? '請依頁序上傳；辨識後務必核對文字再批改。' : `紙上作答後拍照上傳，最多 ${PHOTO_MAX} 張；本站不儲存照片。`}</span></div>
+        ${photos.length ? `<div class="photo-row">${photos.map((p, i) => `<div class="photo-thumb"><img src="${p.url}" alt="第 ${i + 1} 頁"><span>${i + 1}</span>${busy ? '' : `<button data-rm="${i}" title="移除這張" aria-label="移除第 ${i + 1} 張">✕</button>`}</div>`).join('')}</div>` : ''}
+        ${msg ? `<div class="note small">${esc(msg)}</div>` : ''}</div>`;
+      const input = host.querySelector('input[type=file]');
+      input.onchange = async () => {
+        const files = [...input.files]; msg = '';
+        if (photos.length + files.length > PHOTO_MAX) msg = `一題最多 ${PHOTO_MAX} 張，只加入前 ${PHOTO_MAX - photos.length} 張。`;
+        for (const f of files.slice(0, PHOTO_MAX - photos.length)) {
+          try { photos.push(await shrinkPhoto(f)); } catch (e) { msg = e.message; }
+        }
+        draw();
+      };
+      host.querySelectorAll('[data-rm]').forEach((b) => { b.onclick = () => { photos.splice(Number(b.dataset.rm), 1); msg = ''; draw(); }; });
+      const go = host.querySelector('[data-ocr]');
+      if (go) go.onclick = async () => {
+        busy = true; msg = ''; draw();
+        try {
+          const r = await aiTranscribe(await getQ(), photos);
+          onText(r.text);
+          msg = `已把 ${photos.length} 張照片辨識成文字並填入作答區。${r.truncated ? '內容太長，後段可能沒有辨識完，請分次上傳。' : ''}手寫辨識可能有錯字或漏行，「□」代表看不清楚的字，請先核對修正再批改。`;
+        } catch (e) { msg = `辨識失敗：${e.message}`; }
+        busy = false; draw();
+      };
+    };
+    draw();
+  }
+  // 把辨識結果放進作答區：作答區是空的或仍是上次的辨識結果就取代，否則接在後面，避免蓋掉考生自己打的字
+  function mergeOcr(current, text, last) { const cur = (current || '').trim(); return !cur || cur === (last || '').trim() ? text : `${cur}\n\n${text}`; }
+
   function renderAI(r, q) {
     const cls = r.pct >= 80 ? 'green' : r.pct >= 60 ? 'amber' : 'red';
     const li = (arr) => (arr || []).map((x) => `<li>${esc(x)}</li>`).join('');
@@ -274,6 +336,7 @@
           <div class="flex" style="margin:.4rem 0"><button class="btn btn-sm" id="tStart">▶ 開始計時</button><button class="btn btn-sm" id="tPause">⏸ 暫停</button><button class="btn btn-sm" id="tReset">↺ 重設</button>
             <label class="small">倒數 <input id="tLimit" type="number" value="25" min="5" max="120" style="width:60px"> 分</label></div>
           <textarea id="answerText" placeholder="依「破題定義 → 法條依據 → 分析／學說 → 實務／計算 → 結論」架構作答。可直接在此打字，或在紙上作答後只填自評。">${esc(store.get(`draft-${q.id}`, ''))}</textarea>
+          ${aiOn ? '<div id="photoBox"></div>' : ''}
           <div class="flex between"><div class="flex">
               <button class="btn btn-accent" id="autoGrade" ${q.rubric ? '' : 'disabled title="本題尚未建立得分要點"'}>🤖 自動批改</button>
               ${aiOn ? '<button class="btn" id="aiGrade">✨ AI 批改</button>' : ''}
@@ -312,6 +375,8 @@
     const ta = $('#answerText');
     const wc = () => { $('#wordCount').textContent = `${ta.value.replace(/\s/g, '').length} 字`; store.set(`draft-${q.id}`, ta.value); };
     ta.oninput = wc; wc();
+    let lastOcr = '';
+    if ($('#photoBox')) photoWidget($('#photoBox'), () => q, (text) => { ta.value = mergeOcr(ta.value, text, lastOcr); lastOcr = ta.value; wc(); ta.focus(); });
     const calc = () => { let total = 0; RUBRIC.forEach(([, w], i) => { const v = Number($(`#r${i}`).value) / 5 * w; $(`#rv${i}`).textContent = Math.round(v); total += v; }); $('#rubricTotal').textContent = Math.round(total); return Math.round(total); };
     RUBRIC.forEach((_, i) => { $(`#r${i}`).oninput = calc; });
     // 自動批改／AI 批改
@@ -373,7 +438,8 @@
         <div class="flex"><span class="timer" id="mTimer">--:--</span><button class="btn btn-sm" id="mNew">換一份</button><button class="btn btn-primary" id="mSubmit">交卷並批改</button></div></div>
       <p class="small muted">每題寫完可先按「🤖 自動批改」${aiOn ? '或「✨ AI 批改」' : ''}看結果；全部寫完再按「交卷並批改」彙整總分。</p>
       ${exam.questions.map((q) => { const c = mockCachedAI(exam, q); return `<div class="card"><div class="meta small muted">第 ${q.order} 題（${q.score} 分）・原為 ${roc(q.year)} 第 ${q.question_no} 題</div><div class="q-text">${esc(q.text)}</div>
-        <textarea data-q="${q.id}" placeholder="作答區（亦可紙上作答）">${esc(exam.answers[q.id] || '')}</textarea>
+        <textarea data-q="${q.id}" placeholder="${aiOn ? '作答區（可直接打字，或紙上作答後拍照上傳辨識）' : '作答區（亦可紙上作答）'}">${esc(exam.answers[q.id] || '')}</textarea>
+        ${aiOn ? `<div data-photo="${q.id}"></div>` : ''}
         <div class="flex between"><div class="flex"><button class="btn btn-sm btn-accent" data-mauto="${q.id}">🤖 自動批改</button>${aiOn ? `<button class="btn btn-sm" data-mai="${q.id}">${c ? '✨ 重新 AI 批改' : '✨ AI 批改'}</button>` : ''}</div><span class="small muted" data-wc="${q.id}"></span></div>
         <div data-mres="${q.id}"></div><div data-mai-res="${q.id}">${c ? aiBox(q, c) : ''}</div></div>`; }).join('')}
       <div class="card flex between"><span class="muted small">交卷後會彙整各題${aiOn ? '自動批改與 AI 批改' : '自動批改'}分數；紀錄會以「mock」模式存入學習紀錄。</span><button class="btn btn-primary" id="mSubmit2">交卷並批改</button></div>`;
@@ -384,6 +450,11 @@
     app.querySelectorAll('textarea[data-q]').forEach((ta) => { ta.oninput = () => { exam.answers[ta.dataset.q] = ta.value; store.set(key, exam); wc(ta.dataset.q); }; wc(ta.dataset.q); });
     // 作答中即時批改：每題可先看自動批改或 AI 批改結果，AI 結果會留到交卷後沿用
     const qOf = (id) => exam.questions.find((q) => String(q.id) === String(id));
+    // 手寫作答：拍照上傳後辨識成文字，填回該題作答區
+    app.querySelectorAll('[data-photo]').forEach((host) => {
+      const id = host.dataset.photo; const ta = app.querySelector(`textarea[data-q="${id}"]`); let lastOcr = '';
+      photoWidget(host, () => api(`/questions/${id}`), (text) => { ta.value = mergeOcr(ta.value, text, lastOcr); lastOcr = ta.value; exam.answers[id] = ta.value; store.set(key, exam); wc(id); });
+    });
     app.querySelectorAll('[data-mauto]').forEach((b) => { b.onclick = async () => {
       const q = qOf(b.dataset.mauto); const full = await api(`/questions/${q.id}`);
       const res = window.Grader.grade(exam.answers[q.id] || '', full.rubric, { score: q.score });
