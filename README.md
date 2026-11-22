@@ -140,3 +140,12 @@ supabase secrets set ANTHROPIC_API_KEY=<金鑰> --project-ref <專案代碼>
 - 公職王：69 份擬答採檔案直連（站內下載按鈕需登入會員；直連為站方決定採用），另 6 份連歷屆試題列表頁。
 - 網站只放連結，不轉載解答內容。
 - 校準：`node work/tools/dl_answers.cjs` 下載上述 PDF 至 `work/answers/`（不進版控），`py -3 -I work/tools/extract.py work/answers/pdf work/answers/txt` 轉文字（設有禁止複製保護的 PDF 不抽取），`node work/tools/calib.cjs` 以解答文字試跑批改引擎，列出得分要點涵蓋偏低或計算值不符的題目供人工檢視。`work/` 整個目錄已列入 `.gitignore`。
+
+## 最新政策動態：價值島每日觀測
+
+「政策動態」頁上方與首頁的最新快訊，來自事務所製作的[價值島](https://zonetai.com/value-isle/daily.html)（repo：zonetai/value-isle）。訪客開啟頁面時直接讀取它的 `assets/daily.js`，價值島每日更新，本站不必重新部署就會跟著更新。
+
+- 預設顯示「政策氣候」層，可切換個別條件、市場潮位、國際海象；候選人政見預設收起。
+- 讀不到資料時只顯示前往價值島的連結，不影響其他功能。
+- 資料網址可在 `public/config.js` 以 `isleDataUrl` 覆寫。
+- 下方的「修法與考點整理」仍由 `db/seed/policies.json` 維護，法規修正以這一區與原始條文為準。
